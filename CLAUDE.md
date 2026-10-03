@@ -18,7 +18,7 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 ## Estat actual
 
 - **Sprint 1: 05/10/2026 – 28/10/2026.** Objectiu: base tècnica operativa + primer flux del MVP (login → mapa de punts amb índex v1 → recomanacions → fitxa del punt amb desglossament → calendari de fenòmens). Veure `docs/sprint-1.md`.
-- El repositori acaba de néixer: només hi ha l'estructura, la documentació i les convencions. Els scaffolds (Expo, API) arriben amb les tasques #66 i #68 de Taiga.
+- El repositori acaba de néixer: només hi ha l'estructura, la documentació i les convencions. Les branques `snapshot`, `stable` i `prod` estan protegides (ruleset de GitHub). Els scaffolds (Expo, API) arriben amb les tasques TG-66 i TG-68.
 
 ## Stack (decidit, no reobrir sense ADR)
 
@@ -58,16 +58,22 @@ Regla: un tipus de domini s'escriu **una sola vegada** a `packages/shared` i el 
 - **Design system:** tots els colors, tipografies i espaiats surten dels tokens (`docs/design-system.md`). Cap color "a mà" a les pantalles.
 - **API:** REST, recursos en català tal com estan acordats amb altres equips (`/punts`, `/recomanacions`, `/esdeveniments`). Errors amb format uniforme `{ error: { code, message } }`. Tota ruta nova es documenta a l'OpenAPI a la mateixa PR.
 - **Tests:** Jest. Cada ViewModel i cada servei de domini amb tests. La fórmula de l'índex és codi pur i 100 % testejable.
-- **Secrets:** mai al repositori. `.env.example` documenta les variables; els valors reals van a `.env` (ignorat) i als secrets de GitHub.
+- **Secrets:** mai al repositori (és **públic**). `.env.example` documenta les variables; els valors reals van a `.env` (ignorat) i als secrets de GitHub.
 
-## Flux de Git (obligatori)
+## Flux de Git (obligatori): Gitflow + Conventional Commits 1.0.0
 
-Branques permanents: `snapshot` (integració, per defecte) → `stable` (sprint validat) → `prod` (publicació). Detalls: `docs/git-workflow.md`.
+Detalls i receptes: `docs/git-workflow.md` (ADR-0009).
 
-- Es treballa en branques `feature/TG-<ref>-descripcio-curta` (o `fix/…`, `chore/…`, `docs/…`) creades des de `snapshot`.
-- Tot entra per **pull request** amb CI en verd i **1 revisió aprovada**. Ningú fa push directe a `snapshot`, `stable` ni `prod`.
-- `snapshot → stable` al final de cada sprint (després de la review); `stable → prod` quan es publica.
-- **Commits:** Conventional Commits amb la referència de Taiga, p. ex. `feat(api): endpoint GET /punts amb filtre bbox TG-91`. L'assignatura exigeix que cada commit referenciï la seva tasca de Taiga.
+- **Gitflow** amb els noms de l'assignatura: `snapshot` = `develop` (per defecte), `stable` = `main` (una versió etiquetada per sprint, `v0.N.0`), `prod` = versió publicada.
+- Branques de suport: `feature/TG-<ref>-descripcio-curta` des de `snapshot` i de tornada a `snapshot`; `release/0.N.0` des de `snapshot` cap a `stable` i `snapshot`; `hotfix/0.N.x` des de `stable` cap a `stable` i `snapshot`. No hi ha altres prefixos (res de `fix/`, `docs/`…: tot el que no és release ni hotfix és una feature).
+- Tot entra per **pull request** amb CI en verd i **1 revisió aprovada**, fusionada amb merge commit. Ningú fa push directe a `snapshot`, `stable` ni `prod`.
+- **Commits:** [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/): `<tipus>(<àmbit>): <descripció>` amb el peu **`Refs: TG-<ref>`** obligatori (l'assignatura exigeix lligar cada commit a Taiga). Canvi incompatible: `!` i/o peu `BREAKING CHANGE:`.
+
+  ```
+  feat(api): afegeix GET /punts amb filtre per bbox
+
+  Refs: TG-88
+  ```
 
 ## Definition of Done
 
@@ -76,7 +82,7 @@ Especificada → implementada → provada (tests a la CI) → revisada (PR aprov
 ## Com ha de treballar Claude Code aquí
 
 1. Identifica la tasca de Taiga (ref `TG-xx`) i llegeix-ne la descripció i els criteris d'acceptació de la història (`docs/sprint-1.md`).
-2. Crea la branca des de `snapshot` amb el nom de la convenció.
+2. Crea la branca `feature/TG-<ref>-…` des de `snapshot` actualitzada.
 3. Respecta el stack i les convencions; si una decisió no està presa, consulta `docs/decisions/pendents.md` i **pregunta** abans d'inventar-la.
 4. Escriu tests i actualitza l'OpenAPI / docs a la mateixa PR.
 5. Missatges de commit i descripció de PR seguint la convenció; plantilla a `.github/pull_request_template.md`.
