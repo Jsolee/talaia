@@ -18,7 +18,7 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 ## Estat actual
 
 - **Sprint 1: 05/10/2026 – 28/10/2026.** Objectiu: base tècnica operativa + primer flux del MVP (login → mapa de punts amb índex v1 → recomanacions → fitxa del punt amb desglossament → calendari de fenòmens). Veure `docs/sprint-1.md`.
-- El repositori acaba de néixer: només hi ha l'estructura, la documentació i les convencions. Els scaffolds (Expo, API) arriben amb les tasques #66 i #68 de Taiga.
+- El repositori acaba de néixer: només hi ha l'estructura, la documentació i les convencions. Les branques `snapshot`, `stable` i `prod` estan protegides (ruleset de GitHub). Els scaffolds (Expo, API) arriben amb les tasques TG-66 i TG-68.
 
 ## Stack (decidit, no reobrir sense ADR)
 
@@ -58,7 +58,7 @@ Regla: un tipus de domini s'escriu **una sola vegada** a `packages/shared` i el 
 - **Design system:** tots els colors, tipografies i espaiats surten dels tokens (`docs/design-system.md`). Cap color "a mà" a les pantalles.
 - **API:** REST, recursos en català tal com estan acordats amb altres equips (`/punts`, `/recomanacions`, `/esdeveniments`). Errors amb format uniforme `{ error: { code, message } }`. Tota ruta nova es documenta a l'OpenAPI a la mateixa PR.
 - **Tests:** Jest. Cada ViewModel i cada servei de domini amb tests. La fórmula de l'índex és codi pur i 100 % testejable.
-- **Secrets:** mai al repositori. `.env.example` documenta les variables; els valors reals van a `.env` (ignorat) i als secrets de GitHub.
+- **Secrets:** mai al repositori (és **públic**). `.env.example` documenta les variables; els valors reals van a `.env` (ignorat) i als secrets de GitHub.
 
 ## Flux de Git (obligatori)
 

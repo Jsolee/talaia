@@ -8,6 +8,8 @@
 | `stable` | Estat validat al final de cada sprint (el que es mostra a la review) | PR `snapshot → stable` | PR obligatòria, 1 aprovació, CI en verd |
 | `prod` | Versió publicada (servidor de producció, botigues) | PR `stable → prod` | PR obligatòria, 1 aprovació, CI en verd |
 
+Les regles són un *ruleset* de GitHub («Branques permanents»): PR obligatòria amb 1 aprovació (les aprovacions es descarten si hi ha commits nous i cal resoldre les converses), sense esborrar ni force-push. L'únic *bypass* és el rol d'administrador del repo i **només dins d'una PR** (per desencallar una PR urgent si ningú pot revisar); cap push directe. Quan existeixi la CI (TG-70), s'hi afegirà «Require status checks to pass».
+
 El servidor es desplega des de `stable` durant el desenvolupament (TG-71) i des de `prod` per a la versió final.
 
 ## Branques de treball
