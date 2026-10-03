@@ -12,7 +12,8 @@ Format: **Context → Decisió → Conseqüències**. Estat: `Acceptada`, `Propo
 | [0004](0004-index-precalculat.md) | Índex de visibilitat precalculat cada hora | Acceptada |
 | [0005](0005-mapa-icgc-maplibre.md) | Mapa amb MapLibre i tessel·les de l'ICGC; rutes via Aprop + deep link | Acceptada |
 | [0006](0006-infra-vm-docker.md) | Una VM amb Docker Compose + Nginx + Let's Encrypt | Acceptada |
-| [0007](0007-git-snapshot-stable-prod.md) | Branques snapshot / stable / prod amb PR obligatòria | Acceptada |
+| [0007](0007-git-snapshot-stable-prod.md) | Branques snapshot / stable / prod amb PR obligatòria | Substituïda per 0009 |
 | [0008](0008-monorepo.md) | Monorepo amb apps/, services/, packages/shared | Acceptada |
+| [0009](0009-gitflow.md) | Gitflow amb snapshot (develop) / stable (main) / prod, i Conventional Commits 1.0.0 | Acceptada |
 
 Decisions encara obertes: [pendents.md](pendents.md).

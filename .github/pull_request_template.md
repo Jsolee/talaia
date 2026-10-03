@@ -14,8 +14,8 @@ TG-<ref> · <títol de la tasca>
 
 ## Checklist
 
-- [ ] La branca surt de `snapshot` i està rebasada
-- [ ] Commits amb Conventional Commits i `TG-<ref>`
+- [ ] Branca Gitflow correcta (`feature/TG-<ref>-…` cap a `snapshot`, o `release/*` / `hotfix/*`) i al dia amb la branca de destí
+- [ ] Títol i commits en Conventional Commits 1.0.0, amb el peu `Refs: TG-<ref>`
 - [ ] Lint, typecheck i tests passen en local
 - [ ] Tests nous o actualitzats
 - [ ] OpenAPI / docs actualitzats si toca
