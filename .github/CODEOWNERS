@@ -1,0 +1,7 @@
+# Revisors per defecte. GitHub demana revisió a aquestes persones quan una PR toca la ruta.
+*                       @Jsolee
+/services/              @mohamed-dari
+/services/worker/       @HugoNienhausen @mohamed-dari
+/apps/mobile/           @vinyetam @Jsolee
+/packages/shared/       @Jsolee @mohamed-dari
+/docs/                  @Jsolee

@@ -1,0 +1,50 @@
+# Dependències
+node_modules/
+.pnpm-store/
+
+# Builds
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Expo / React Native
+.expo/
+.expo-shared/
+web-build/
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Entorn i secrets
+.env
+.env.*
+!.env.example
+
+# Dades grans (es descarreguen amb els scripts de data/)
+data/raw/
+data/processed/
+*.tif
+*.tiff
+
+# Supabase local
+supabase/.branches
+supabase/.temp
+
+# Sistema i editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Claude Code (configuració personal)
+.claude/settings.local.json

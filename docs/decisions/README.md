@@ -1,0 +1,18 @@
+# Registre de decisions (ADR)
+
+Cada decisió tècnica rellevant es registra aquí perquè ningú (persona o agent) l'hagi de reobrir sense motiu. Per canviar-ne una, s'afegeix una ADR nova que la substitueix; no s'esborra l'antiga.
+
+Format: **Context → Decisió → Conseqüències**. Estat: `Acceptada`, `Proposada`, `Substituïda per ADR-xxxx`.
+
+| ADR | Decisió | Estat |
+|---|---|---|
+| [0001](0001-app-react-native-expo.md) | App mòbil amb React Native + TypeScript + Expo, patró MVVM | Acceptada |
+| [0002](0002-api-node-express.md) | API i worker propis amb Node.js + TypeScript + Express | Acceptada |
+| [0003](0003-supabase.md) | Supabase (PostgreSQL + PostGIS, Auth, Storage) a la UE | Acceptada |
+| [0004](0004-index-precalculat.md) | Índex de visibilitat precalculat cada hora | Acceptada |
+| [0005](0005-mapa-icgc-maplibre.md) | Mapa amb MapLibre i tessel·les de l'ICGC; rutes via Aprop + deep link | Acceptada |
+| [0006](0006-infra-vm-docker.md) | Una VM amb Docker Compose + Nginx + Let's Encrypt | Acceptada |
+| [0007](0007-git-snapshot-stable-prod.md) | Branques snapshot / stable / prod amb PR obligatòria | Acceptada |
+| [0008](0008-monorepo.md) | Monorepo amb apps/, services/, packages/shared | Acceptada |
+
+Decisions encara obertes: [pendents.md](pendents.md).

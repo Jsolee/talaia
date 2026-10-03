@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Backlog i tasques (Taiga)
+    url: https://tree.taiga.io/project/mohamed-dari-pes_22_c_talaia
+    about: Les històries i tasques es gestionen a Taiga. A GitHub només es reporten errors.
