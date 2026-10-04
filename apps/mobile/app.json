@@ -39,6 +39,13 @@
       "typedRoutes": true,
       "reactCompiler": true
     },
-    "backgroundColor": "#0E1433"
+    "backgroundColor": "#0E1433",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "ef610e9c-2275-41da-a5cf-bb69de7430d2"
+      }
+    },
+    "owner": "talaia.pes"
   }
 }
