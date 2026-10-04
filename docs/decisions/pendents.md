@@ -6,16 +6,13 @@ Llegenda: **Recomanació** = la proposta inicial del sprint master; no és defin
 
 ## Tècniques (Sprint 1, scaffolds)
 
+P1, P2, P3, P7 i P8 ja estan decidides: [ADR-0010](0010-eines-app.md).
+
 | # | Decisió | Opcions | Recomanació | Quan / qui |
 |---|---|---|---|---|
-| P1 | Gestor de paquets i workspaces | npm workspaces · pnpm (amb `node-linker=hoisted` per Expo) · Yarn | **npm workspaces**: suportat per Expo sense configuració extra, una eina menys | TG-66, Joan |
-| P2 | Navegació a l'app | Expo Router (fitxers) · React Navigation | **Expo Router**: rutes tipades, deep links gratis | TG-66, Joan |
-| P3 | Dades remotes i estat a l'app | TanStack Query · Redux Toolkit · Zustand | **TanStack Query** a la capa Repository + estat local als ViewModels; Zustand només si cal estat global (sessió) | TG-66, Joan |
 | P4 | Validació i OpenAPI a l'API | zod + `zod-to-openapi` (spec generada) · YAML escrit a mà | **zod + zod-to-openapi**: una sola definició per validar i documentar | TG-68, Joan |
 | P5 | Accés a la base de dades des de l'API/worker | supabase-js · Kysely · Drizzle · `pg` directe | **Migracions SQL amb Supabase CLI + Kysely** amb tipus generats; PostGIS amb SQL explícit | TG-69 / TG-86 |
 | P6 | Validació del JWT a l'API | Verificar amb JWKS de Supabase (`jose`) · secret compartit | **JWKS amb `jose`** | TG-84, Martina |
-| P7 | Framework de tests | Jest a tot arreu · Jest (mobile) + Vitest (serveis) | **Jest a tot arreu** (una sola eina) | TG-66/68 |
-| P8 | Versió de Node | 22 LTS · 24 | **22 LTS** (`.nvmrc`) | TG-66 |
 | P9 | Planificació del worker | `node-cron` dins el contenidor · cron del sistema | **node-cron** (tot dins de Docker) | TG-99, Martina |
 | P10 | Preprocés del GeoTIFF | `geotiff.js` (Node) · GDAL (script a part) | **geotiff.js** en un script de `data/` que genera la foscor per punt | TG-97, Hugo |
 | P11 | Web d'administració | Vite + React · Next.js | **Vite + React** (estàtica, servida per Nginx) | Sprint 2 |
@@ -37,3 +34,6 @@ Llegenda: **Recomanació** = la proposta inicial del sprint master; no és defin
 | P17 | Domini i URL pública de l'API | Necessari per a Let's Encrypt i per als equips Mobilicat/Aprop. |
 | P18 | Accés al repositori | El repositori és **públic** (la protecció de branques és gratuïta i l'equip i el professor el poden veure). Cal convidar l'equip com a col·laboradors amb permís d'escriptura. **Mai cap secret al repo.** |
 | P19 | Integració Taiga ↔ GitHub | Activar el webhook de Taiga perquè els commits amb `TG-<ref>` quedin enllaçats a les tasques. |
+| P20 | Correu de l'equip i propietat dels serveis | Compte `talaia.pes@gmail.com` creat (2026-10-04). Serà el **propietari** de Supabase, Expo/EAS, Google Cloud (OAuth), Resend, SonarCloud i domini; cada membre hi entra amb el seu compte com a membre de l'organització. Credencials en un gestor de contrasenyes compartit pels admins (Joan, Mohamed), **mai al repo ni al xat**. |
+| P21 | Servidor de correu per a Supabase Auth | El correu integrat de Supabase només serveix per a proves. Proposta: **Resend** com a SMTP, que requereix el domini de P17. |
+| P22 | Identificador de l'app | `ios.bundleIdentifier` i `android.package` (p. ex. `cat.talaia.app` si hi ha domini, o un altre). Cal abans del primer build d'EAS; no es pot canviar un cop publicada. |
