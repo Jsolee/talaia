@@ -1,0 +1,16 @@
+{
+  "name": "talaia",
+  "private": true,
+  "description": "Talaia: on i quan observar el cel a Catalunya. Monorepo (PES FIB-UPC, grup 22, equip C).",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "workspaces": [
+    "apps/mobile"
+  ],
+  "scripts": {
+    "mobile": "npm run start --workspace apps/mobile",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "common": {
+    "appName": "Talaia",
+    "comingSoon": "Aviat, aquí."
+  },
+  "tabs": {
+    "map": "Mapa",
+    "calendar": "Calendari",
+    "profile": "Perfil"
+  },
+  "map": {
+    "title": "On mirem el cel?",
+    "subtitle": "Els millors punts per observar el cel de Catalunya, amb el seu índex de visibilitat."
+  },
+  "calendar": {
+    "title": "Calendari",
+    "subtitle": "Fenòmens astronòmics del mes: pluges d'estels, eclipsis i fases de la Lluna."
+  },
+  "profile": {
+    "title": "Perfil",
+    "language": "Idioma",
+    "languages": {
+      "ca": "Català",
+      "es": "Castellà",
+      "en": "Anglès"
+    }
+  },
+  "point": {
+    "title": "Punt d'observació",
+    "subtitle": "Fitxa del punt {{id}}: índex per hores i factors."
+  },
+  "welcome": {
+    "title": "Talaia",
+    "subtitle": "On i quan mirar el cel."
+  },
+  "notFound": {
+    "title": "Aquesta pantalla no existeix",
+    "back": "Torna a l'inici"
+  }
+}

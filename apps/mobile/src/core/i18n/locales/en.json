@@ -1,0 +1,40 @@
+{
+  "common": {
+    "appName": "Talaia",
+    "comingSoon": "Coming soon."
+  },
+  "tabs": {
+    "map": "Map",
+    "calendar": "Calendar",
+    "profile": "Profile"
+  },
+  "map": {
+    "title": "Where shall we look up?",
+    "subtitle": "The best spots to watch the sky in Catalonia, with their visibility index."
+  },
+  "calendar": {
+    "title": "Calendar",
+    "subtitle": "This month's sky events: meteor showers, eclipses and Moon phases."
+  },
+  "profile": {
+    "title": "Profile",
+    "language": "Language",
+    "languages": {
+      "ca": "Catalan",
+      "es": "Spanish",
+      "en": "English"
+    }
+  },
+  "point": {
+    "title": "Observation spot",
+    "subtitle": "Spot {{id}}: hourly index and factors."
+  },
+  "welcome": {
+    "title": "Talaia",
+    "subtitle": "Where and when to look at the sky."
+  },
+  "notFound": {
+    "title": "This screen doesn't exist",
+    "back": "Back to start"
+  }
+}
