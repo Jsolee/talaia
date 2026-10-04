@@ -1,0 +1,40 @@
+{
+  "common": {
+    "appName": "Talaia",
+    "comingSoon": "Muy pronto, aquí."
+  },
+  "tabs": {
+    "map": "Mapa",
+    "calendar": "Calendario",
+    "profile": "Perfil"
+  },
+  "map": {
+    "title": "¿Dónde miramos el cielo?",
+    "subtitle": "Los mejores puntos para observar el cielo de Cataluña, con su índice de visibilidad."
+  },
+  "calendar": {
+    "title": "Calendario",
+    "subtitle": "Fenómenos astronómicos del mes: lluvias de estrellas, eclipses y fases de la Luna."
+  },
+  "profile": {
+    "title": "Perfil",
+    "language": "Idioma",
+    "languages": {
+      "ca": "Catalán",
+      "es": "Castellano",
+      "en": "Inglés"
+    }
+  },
+  "point": {
+    "title": "Punto de observación",
+    "subtitle": "Ficha del punto {{id}}: índice por horas y factores."
+  },
+  "welcome": {
+    "title": "Talaia",
+    "subtitle": "Dónde y cuándo mirar el cielo."
+  },
+  "notFound": {
+    "title": "Esta pantalla no existe",
+    "back": "Volver al inicio"
+  }
+}

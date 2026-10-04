@@ -18,7 +18,9 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 ## Estat actual
 
 - **Sprint 1: 05/10/2026 – 28/10/2026.** Objectiu: base tècnica operativa + primer flux del MVP (login → mapa de punts amb índex v1 → recomanacions → fitxa del punt amb desglossament → calendari de fenòmens). Veure `docs/sprint-1.md`.
-- El repositori acaba de néixer: només hi ha l'estructura, la documentació i les convencions. Les branques `snapshot`, `stable` i `prod` estan protegides (ruleset de GitHub). Els scaffolds (Expo, API) arriben amb les tasques TG-66 i TG-68.
+- Les branques `snapshot`, `stable` i `prod` estan protegides (ruleset de GitHub).
+- **App:** scaffold fet (TG-66): Expo SDK 57 + Expo Router + MVVM + i18n + TanStack Query + Jest a `apps/mobile` (vegeu el seu `README.md` i `AGENTS.md`). Eines: ADR-0010.
+- Pendent: API (TG-68), commit inicial amb el mòdul MVVM de referència i `packages/shared` (TG-112), linters (TG-67).
 
 ## Stack (decidit, no reobrir sense ADR)
 
@@ -35,6 +37,16 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 | i18n | i18next (ca per defecte, es, en) |
 
 Per què cada peça i què es va descartar: `docs/arquitectura.md`.
+
+## Ordres
+
+```bash
+nvm use && npm install        # a l'arrel (npm workspaces)
+npm run mobile                 # Expo dev server
+npm run typecheck && npm test  # tots els workspaces
+```
+
+Dins d'`apps/mobile`, les dependències natives s'afegeixen amb `npx expo install`.
 
 ## Estructura del monorepo
 
