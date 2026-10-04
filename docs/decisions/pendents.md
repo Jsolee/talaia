@@ -35,5 +35,5 @@ Llegenda: **Recomanació** = la proposta inicial del sprint master; no és defin
 |---|---|---|
 | P16 | On s'allotja la VM | Opcions: servidor de la FIB/UPC si n'ofereixen, crèdits d'estudiant (Azure, GitHub Student Pack), VPS barat. TG-71 (Mohamed). |
 | P17 | Domini i URL pública de l'API | Necessari per a Let's Encrypt i per als equips Mobilicat/Aprop. |
-| P18 | Accés al repositori | El repositori és **públic** (la protecció de branques és gratuïta i l'equip i el professor el poden veure). Cal convidar l'equip com a col·laboradors amb permís d'escriptura. **Mai cap secret al repo.** |
+| P18 | Accés al repositori | El repositori és a l'organització de l'assignatura, **`pes2627q1-22-gei-upc/talaia`**, i és **públic**. Tot l'equip és membre de l'organització; falta que un propietari (el professor) doni permís d'escriptura a l'equip al repo i d'administració a un dels admins (Joan o Mohamed). **Mai cap secret al repo.** |
 | P19 | Integració Taiga ↔ GitHub | Activar el webhook de Taiga perquè els commits amb `TG-<ref>` quedin enllaçats a les tasques. |
