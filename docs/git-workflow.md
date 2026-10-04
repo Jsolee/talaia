@@ -10,7 +10,7 @@ L'equip treballa amb **[Gitflow](https://www.atlassian.com/git/tutorials/compari
 | `stable` | **`main`** | Historial oficial de versions: una per sprint, amb etiqueta | Només `release/*` i `hotfix/*` |
 | `prod` | Branca de desplegament (extensió de Gitflow) | La versió publicada (servidor de producció i botigues) | Només `stable` quan es publica |
 
-Protecció (ruleset de GitHub «Branques permanents»): PR obligatòria amb 1 aprovació (es descarten si hi ha commits nous i cal resoldre les converses), sense esborrar ni force-push. L'únic *bypass* és el rol d'administrador del repo i **només dins d'una PR**; cap push directe. Des que el repo és a l'organització de l'assignatura, en la pràctica cada PR necessita la revisió d'un company. Quan existeixi la CI (TG-70), s'hi afegirà «Require status checks to pass».
+Protecció (ruleset de GitHub «Branques permanents (snapshot, stable, prod)»): PR obligatòria amb 1 aprovació (es descarten si hi ha commits nous i cal resoldre les converses), només *merge commit*, sense esborrar ni force-push. **No hi ha cap *bypass***, tampoc per als administradors del repo: cap push directe i cada PR necessita l'aprovació d'una altra persona. Quan existeixi la CI (TG-70), s'hi afegirà «Require status checks to pass».
 
 ## Branques de suport
 

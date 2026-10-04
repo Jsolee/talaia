@@ -34,5 +34,6 @@ Requisits previstos: Node.js 22 LTS (`.nvmrc`), Git, compte d'Expo, accés al pr
 
 ## Gestió
 
+- Codi: [pes2627q1-22-gei-upc/talaia](https://github.com/pes2627q1-22-gei-upc/talaia) (organització de l'assignatura)
 - Backlog i sprints: [Taiga](https://tree.taiga.io/project/mohamed-dari-pes_22_c_talaia)
 - Lliurables de l'assignatura: Google Drive de l'equip (`PES_22_C_TALAIA`)
