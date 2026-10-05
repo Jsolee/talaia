@@ -2,7 +2,7 @@
 
 **Objectiu:** deixar operativa la base tècnica (repositori, app, API, base de dades, CI i desplegament) i lliurar el primer flux complet del MVP: l'usuari inicia sessió, veu els punts d'observació de Catalunya al mapa amb l'índex de visibilitat v1, obté recomanacions per a un fenomen, consulta la fitxa d'un punt amb el desglossament de l'índex i el calendari de fenòmens astronòmics.
 
-**Compromís:** 104 story points en 6 històries d'usuari · 34 tasques · 104 h estimades.
+**Compromís:** 139 story points en 7 històries (6 d'usuari + la tècnica [TEC]) · 44 tasques · 139 h estimades.
 
 **Criteri d'estimació:** 1 story point = 1 hora. Els story points d'una història són la suma de les hores estimades de les seves tasques.
 
@@ -119,24 +119,25 @@ Criteris d'acceptació:
 | TG-110 | Pantalla del calendari mensual amb filtre per tipus (mockup 08) | Vinyet | 19/10 | 23/10 | 5 |
 | TG-111 | Tests de la ingesta i de l'endpoint d'esdeveniments | Victor | 22/10 | 26/10 | 2 |
 
-## Fora del sprint backlog: configuració i gestió
-
-Les històries [TEC] i [GES] no entren a la planificació del sprint (no tenen story points ni compten al burndown). Les seves tasques són al backlog de Taiga i les hores es registren al **PRT**. Es mantenen aquí perquè l'equip en vegi els responsables i les dates.
-
-### [TEC] Setup del projecte i infraestructura · [TG-63](https://tree.taiga.io/project/mohamed-dari-pes_22_c_talaia/us/63)
+## [TEC] Setup del projecte i infraestructura · [TG-63](https://tree.taiga.io/project/mohamed-dari-pes_22_c_talaia/us/63)
+Història tècnica (sense èpica de producte) · **35 SP**
 
 | Ref | Tasca | Responsable | Inici | Límit | h |
 |---|---|---|---|---|---|
-| TG-65 | Crear el repositori GitHub (monorepo app/api/worker/admin), estratègia de branques snapshot/stable/prod amb protecció i plantilles de PR | Joan (Jsolee) | 03/10 | 06/10 | 3 |
-| TG-66 | Scaffold de l'app Expo + TypeScript amb arquitectura MVVM, navegació i i18n base (ca/es/en) | Joan (Jsolee) | 04/10 | 08/10 | 5 |
+| TG-65 | Crear el repositori GitHub (monorepo app/api/worker/admin), estratègia de branques snapshot/stable/prod amb protecció i plantilles de PR | Joan | 03/10 | 06/10 | 3 |
+| TG-66 | Scaffold de l'app Expo + TypeScript amb arquitectura MVVM, navegació i i18n base (ca/es/en) | Joan | 04/10 | 08/10 | 5 |
 | TG-69 | Crear el projecte Supabase (PostgreSQL + PostGIS, Auth, Storage), migracions i gestió de secrets | Martina | 05/10 | 09/10 | 3 |
-| TG-67 | Configurar ESLint, Prettier, TypeScript strict i hooks de pre-commit (husky + lint-staged) | Joan (Jsolee) | 06/10 | 08/10 | 2 |
-| TG-68 | Scaffold de l'API Node + Express + TypeScript (/api/v1, OpenAPI, healthcheck, gestió d'errors) | Joan (Jsolee) | 07/10 | 09/10 | 4 |
-| TG-112 | Commit inicial: base del projecte (estructura del monorepo, configuració compartida i mòdul MVVM de referència) a snapshot i stable | Joan (Jsolee) | 08/10 | 08/10 | 2 |
+| TG-67 | Configurar ESLint, Prettier, TypeScript strict i hooks de pre-commit (husky + lint-staged) | Joan | 06/10 | 08/10 | 2 |
+| TG-68 | Scaffold de l'API Node + Express + TypeScript (/api/v1, OpenAPI, healthcheck, gestió d'errors) | Joan | 07/10 | 09/10 | 4 |
+| TG-112 | Commit inicial: base del projecte (estructura del monorepo, configuració compartida i mòdul MVVM de referència) a snapshot i stable | Joan | 08/10 | 08/10 | 2 |
 | TG-70 | CI amb GitHub Actions: lint, typecheck i tests a cada PR + anàlisi de qualitat (SonarCloud) | Vinyet | 09/10 | 14/10 | 3 |
-| TG-72 | Guia d'onboarding (README, CONTRIBUTING, entorn local) i kick-off tècnic amb l'equip | Joan (Jsolee) | 09/10 | 09/10 | 2 |
-| TG-113 | Design system a l'app: tokens (colors, tipografia, espaiats), tema fosc i components base (botons, targetes, xips, indicador de l'índex) a partir de Figma | Joan (Jsolee) | 10/10 | 13/10 | 6 |
+| TG-72 | Guia d'onboarding (README, CONTRIBUTING, entorn local) i kick-off tècnic amb l'equip | Joan | 09/10 | 09/10 | 2 |
+| TG-113 | Design system a l'app: tokens (colors, tipografia, espaiats), tema fosc i components base (botons, targetes, xips, indicador de l'índex) a partir de Figma | Joan | 10/10 | 13/10 | 6 |
 | TG-71 | Desplegament a la VM: Docker Compose (API + worker + Nginx), HTTPS amb Let's Encrypt i deploy des de stable | Mohamed | 13/10 | 16/10 | 5 |
+
+## Fora del sprint backlog: gestió del sprint
+
+La història [GES] no entra a la planificació del sprint (no té story points ni compta al burndown). Les seves tasques són al backlog de Taiga i les hores es registren al **PRT**. Es manté aquí perquè l'equip en vegi els responsables i les dates.
 
 ### [GES] Gestió i cerimònies del Sprint 1 · [TG-64](https://tree.taiga.io/project/mohamed-dari-pes_22_c_talaia/us/64)
 
@@ -154,18 +155,20 @@ Les històries [TEC] i [GES] no entren a la planificació del sprint (no tenen s
 
 | Persona | Hores |
 |---|---|
-| Joan | 29 |
-| Vinyet | 21 |
-| Mohamed | 14 |
+| Joan | 53 |
+| Vinyet | 24 |
+| Mohamed | 19 |
+| Martina | 15 |
 | Hugo | 14 |
 | Victor | 14 |
-| Martina | 12 |
-| **Total** | **104** |
+| **Total** | **139** |
 
 ## Dependències crítiques
 
+- TG-112 (commit inicial, 08/10) desbloqueja tota la feina de codi de l'equip.
+- TG-69 (projecte Supabase) → TG-81 (Auth) → TG-84/TG-83 (sessió).
+- TG-113 (design system, 13/10) abans de les pantalles (TG-82, TG-93, TG-101, TG-102, TG-105, TG-110).
 - TG-86 (model de punts) → TG-88 (endpoint de punts) → TG-89/TG-90 (mapa amb marcadors).
 - TG-95, TG-114 i TG-115 (dades meteorològiques), TG-96 (càlcul astronòmic) i TG-97 (foscor) → TG-98 (fórmula de l'índex) → TG-99 (worker), TG-100 (recomanacions) i TG-104 (desglossament).
 - TG-116 (perfil d'horitzó) no bloqueja l'índex v1, que segons els criteris d'HU01 combina nuvolositat, foscor i Sol/Lluna.
 - TG-109 (contracte amb Aprop i Mobilicat) abans de TG-108 (endpoint d'esdeveniments).
-- Depenen de tasques de configuració que se segueixen al PRT: el projecte Supabase (TG-69) abans de l'autenticació (TG-81), i el design system (TG-113) abans de les pantalles.
