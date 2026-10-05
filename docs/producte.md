@@ -40,7 +40,7 @@ Decisions de producte preses:
 - **Cap generació de contingut amb IA** dins el producte.
 - Només **Catalunya**.
 - App en **català, castellà i anglès**.
-- **Navegació:** distància i temps via el servei de rutes de l'equip **Aprop**; per navegar, l'app obre el mapa del mòbil (deep link). No fem navegació pròpia.
+- **Navegació:** distància i temps via el servei de rutes de l'equip **Mobilicat**; per navegar, l'app obre el mapa del mòbil (deep link). No fem navegació pròpia.
 
 ## NOT list (Incepció 2)
 

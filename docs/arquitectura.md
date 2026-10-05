@@ -17,10 +17,10 @@ Principi: **concentrar l'esforç en el que fa únic el producte (l'índex de vis
                               │ SQL / Auth / Storage       │ HTTPS
                               ▼                            ▼
                 Supabase (UE): PostgreSQL+PostGIS,   Open-Meteo · Meteocat XEMA
-                Auth (Google/Apple/correu → JWT),    Servei de rutes de l'equip Aprop
+                Auth (Google/Apple/correu → JWT),    Servei de rutes de l'equip Mobilicat
                 Storage (fotos, URL signades)        Expo Push (→ FCM / APNs)
 
-   Equip Mobilicat ──HTTPS + API key──▶ GET /api/v1/esdeveniments
+   Equip Aprop ──HTTPS + API key──▶ GET /api/v1/esdeveniments
    App ──deep link──▶ app de mapes del mòbil (navegació)
    Mapa a l'app: MapLibre ◀── tessel·les vectorials + relleu 3D de l'ICGC
 ```
@@ -37,7 +37,7 @@ La imatge oficial del diagrama és a la incepció 2 (Drive).
 | Dades i auth | Supabase (PostgreSQL + PostGIS, Auth, Storage) | Firebase, Postgres i login propis |
 | Índex | Precalculat cada hora | Calculat a cada petició |
 | Cartografia | ICGC + MapLibre | Google Maps SDK, Mapbox |
-| Rutes | Servei de l'equip Aprop + deep link al mapa del mòbil | Navegació pròpia |
+| Rutes | Servei de l'equip Mobilicat + deep link al mapa del mòbil | Navegació pròpia |
 | Notificacions | Expo Push | FCM/APNs directes, OneSignal |
 | Infra | 1 VM + Docker Compose + Nginx | Kubernetes, microserveis, PaaS (Render, Railway, Heroku) |
 | CI/CD | GitHub Actions; EAS Build per a l'app | GitLab CI, Jenkins |
@@ -68,8 +68,8 @@ Només la previsió és dependència en temps real; si una font estàtica cau, T
 
 Veure `serveis-externs.md`:
 
-- **Consumim** el servei de rutes de l'equip **Aprop** (distància i temps fins al punt).
-- **Oferim** a l'equip **Mobilicat** `GET /api/v1/esdeveniments?des_de&fins_a&tipus` amb API key.
+- **Consumim** el servei de rutes de l'equip **Mobilicat** (distància i temps fins al punt).
+- **Oferim** a l'equip **Aprop** `GET /api/v1/esdeveniments?des_de&fins_a&tipus` amb API key.
 
 ## Riscos coneguts
 

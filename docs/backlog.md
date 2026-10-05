@@ -124,5 +124,5 @@ Llegenda: ✅ = compromesa al Sprint 1.
 ## E12 · Servei d'esdeveniments per a altres equips
 
 - **HU43** Consultar per API els esdeveniments astronòmics d'un període — 3 SP · [TG-26](https://tree.taiga.io/project/mohamed-dari-pes_22_c_talaia/us/26)  
-  *Com a equip extern (Mobilicat), vull consultar per API els esdeveniments d'un període i tipus, de manera que els pugui integrar a la meva aplicació.*
+  *Com a equip extern (Aprop), vull consultar per API els esdeveniments d'un període i tipus, de manera que els pugui integrar a la meva aplicació.*
 
