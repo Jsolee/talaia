@@ -16,7 +16,7 @@ Mentre no hi hagi mòduls natius (MapLibre arriba amb TG-89), es pot provar amb 
 |---|---|
 | `npm run typecheck -w apps/mobile` | TypeScript strict |
 | `npm test -w apps/mobile` | Jest (`jest-expo`) |
-| `npm run lint -w apps/mobile` | `expo lint` (la configuració de l'equip arriba amb TG-67) |
+| `npm run lint -w apps/mobile` | ESLint amb la configuració de l'arrel (`eslint.config.mjs`) |
 
 > Per afegir dependències amb codi natiu: `npx expo install <paquet>` dins d'`apps/mobile` (tria la versió compatible amb l'SDK).
 
