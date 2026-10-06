@@ -10,7 +10,7 @@ Format: **Context → Decisió → Conseqüències**. Estat: `Acceptada`, `Propo
 | [0002](0002-api-node-express.md) | API i worker propis amb Node.js + TypeScript + Express | Acceptada |
 | [0003](0003-supabase.md) | Supabase (PostgreSQL + PostGIS, Auth, Storage) a la UE | Acceptada |
 | [0004](0004-index-precalculat.md) | Índex de visibilitat precalculat cada hora | Acceptada |
-| [0005](0005-mapa-icgc-maplibre.md) | Mapa amb MapLibre i tessel·les de l'ICGC; rutes via Aprop + deep link | Acceptada |
+| [0005](0005-mapa-icgc-maplibre.md) | Mapa amb MapLibre i tessel·les de l'ICGC; rutes via Mobilicat + deep link | Acceptada |
 | [0006](0006-infra-vm-docker.md) | Una VM amb Docker Compose + Nginx + Let's Encrypt | Acceptada |
 | [0007](0007-git-snapshot-stable-prod.md) | Branques snapshot / stable / prod amb PR obligatòria | Substituïda per 0009 |
 | [0008](0008-monorepo.md) | Monorepo amb apps/, services/, packages/shared | Acceptada |
