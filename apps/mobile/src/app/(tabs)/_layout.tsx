@@ -17,7 +17,8 @@ export default function TabsLayout() {
     <NativeTabs
       backgroundColor={colors.card}
       indicatorColor={colors.crep}
-      labelStyle={{ default: { color: colors.boira }, selected: { color: colors.lluna } }}>
+      labelStyle={{ default: { color: colors.boira }, selected: { color: colors.lluna } }}
+    >
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>{t('tabs.map')}</NativeTabs.Trigger.Label>
         {ios ? (

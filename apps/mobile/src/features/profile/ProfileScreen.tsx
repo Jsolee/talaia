@@ -17,7 +17,8 @@ export function ProfileScreen() {
             accessibilityRole="button"
             accessibilityState={{ selected: language.selected }}
             onPress={() => void vm.selectLanguage(language.code)}
-            style={[styles.chip, language.selected && styles.chipSelected]}>
+            style={[styles.chip, language.selected && styles.chipSelected]}
+          >
             <Text style={[styles.chipText, language.selected && styles.chipTextSelected]}>
               {language.label}
             </Text>

@@ -5,3 +5,6 @@ expo-env.d.ts
 
 # Documentació escrita a mà (taules compactes)
 *.md
+
+# Generat per Icon Composer
+*.icon/
