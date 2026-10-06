@@ -1,0 +1,10 @@
+# Prettier ja ignora el que hi ha al .gitignore de l'arrel
+package-lock.json
+expo-env.d.ts
+.expo/
+
+# Documentació escrita a mà (taules compactes)
+*.md
+
+# Generat per Icon Composer
+*.icon/

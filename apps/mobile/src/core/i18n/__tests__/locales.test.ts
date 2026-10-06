@@ -23,7 +23,9 @@ describe('traduccions', () => {
   it('no hi ha cap text buit', () => {
     for (const locale of [ca, es, en]) {
       const empty = keys(locale).filter((key) => {
-        const value = key.split('.').reduce<unknown>((acc, part) => (acc as Record<string, unknown>)[part], locale);
+        const value = key
+          .split('.')
+          .reduce<unknown>((acc, part) => (acc as Record<string, unknown>)[part], locale);
         return typeof value !== 'string' || value.trim() === '';
       });
       expect(empty).toEqual([]);

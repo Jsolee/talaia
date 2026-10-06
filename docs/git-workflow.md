@@ -42,7 +42,7 @@ Refs: TG-<ref>
 
 - **Tipus:** `feat` (funcionalitat nova → versió *minor*), `fix` (correcció → *patch*), i també `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
 - **Àmbit** (opcional, recomanat): `mobile`, `admin`, `api`, `worker`, `shared`, `data`, `infra`, `deps`.
-- **Descripció:** en català, en imperatiu o present, sense punt final, ≤ 72 caràcters amb el prefix.
+- **Descripció:** en català, en imperatiu o present, començant en minúscula, sense punt final, ≤ 72 caràcters amb el prefix.
 - **Canvi incompatible:** `!` després del tipus/àmbit i/o un peu `BREAKING CHANGE: …` (→ versió *major*).
 - **Peu `Refs: TG-<ref>` obligatori** a cada commit (l'assignatura exigeix lligar-los a Taiga i la integració Taiga ↔ GitHub reconeix `TG-<ref>`). Diverses tasques: `Refs: TG-88, TG-91`.
 
@@ -67,13 +67,20 @@ BREAKING CHANGE: els clients han de llegir error.code en lloc de message.
 Refs: TG-68
 ```
 
-La validació automàtica (commitlint + husky) arriba amb TG-67.
+### Validació automàtica (husky)
+
+`npm install` activa els hooks de Git (`.husky/`):
+
+- **pre-commit:** lint-staged passa `eslint --fix` i Prettier pels fitxers del commit. Si queda algun error d'ESLint, el commit s'atura.
+- **commit-msg:** commitlint (`commitlint.config.mjs`) aplica `@commitlint/config-conventional` amb la capçalera de 72 caràcters com a màxim i la descripció en minúscula, i rebutja el commit si no hi ha la línia `Refs: TG-<ref>`. Els merge commits (`Merge pull request…`, `Merge branch…`) en queden exempts.
+
+Per comprovar un missatge sense fer el commit: `printf 'feat: x\n\nRefs: TG-1' | npx commitlint`.
 
 ## Pull requests
 
 - Títol en format Conventional Commits (és el missatge del merge). Descripció amb la plantilla (`.github/pull_request_template.md`): tasca de Taiga, què canvia, com provar-ho, captures si és UI.
 - Mínim 1 revisió aprovada d'una altra persona. Qui obre la PR no l'aprova.
-- Abans de demanar revisió: actualitzar la branca amb `snapshot` i passar lint, typecheck i tests en local.
+- Abans de demanar revisió: actualitzar la branca amb `snapshot` i passar `npm run lint`, `npm run typecheck` i `npm test` en local.
 - En fusionar: tancar la tasca a Taiga i anotar les **Hores reals**. GitHub esborra la branca de suport.
 
 ## Receptes
