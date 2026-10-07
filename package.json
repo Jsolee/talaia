@@ -6,7 +6,8 @@
     "node": ">=22 <23"
   },
   "workspaces": [
-    "apps/mobile"
+    "apps/mobile",
+    "services/api"
   ],
   "scripts": {
     "mobile": "npm run start --workspace apps/mobile",
@@ -15,7 +16,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "api": "npm run dev --workspace services/api"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
