@@ -41,7 +41,10 @@ src/
     providers/          AppProviders (SafeArea, React Query, i18n)
     theme/tokens.ts     Tokens del design system (colors, espaiats, radis, mides)
   shared/ui/            Components de presentació reutilitzables
+  test-utils/           Ajudes per als tests (createQueryWrapper)
 ```
+
+Els tipus de domini (`PuntObservacio`, `Esdeveniment`, `IndexVisibilitat`…) no es defineixen a l'app: vénen de [`@talaia/shared`](../../packages/shared/README.md), sempre amb `import type`.
 
 ## Regles
 
@@ -49,3 +52,32 @@ src/
 - **i18n:** cap text a les pantalles; tot via `t('…')`. Una clau nova va als tres fitxers de `core/i18n/locales/` (hi ha un test que ho comprova).
 - **Tokens:** cap color, mida ni espaiat a mà; tot de `core/theme/tokens.ts`.
 - Rutes en català (`/punt/[id]`, `/calendari`) i identificadors de codi en anglès.
+
+## Mòdul de referència: `features/apiStatus`
+
+L'indicador d'estat de l'API (a la pantalla de Perfil) és el patró que cal copiar. Fa el camí sencer fins a l'API real:
+
+```
+ApiStatusCard.tsx  →  useApiStatusViewModel.ts  →  apiStatusRepository.ts  →  core/api/httpClient  →  GET /api/v1/health
+     View                  ViewModel                   Model/Repository           únic accés HTTP
+```
+
+| Capa | Fitxer | Què hi va | Què no hi va |
+|---|---|---|---|
+| View | `ApiStatusCard.tsx` | JSX, estils amb tokens, `onPress={vm.accio}` | `t()`, `useQuery`, decisions |
+| ViewModel | `useApiStatusViewModel.ts` | L'estat que pinta la View (`loading`/`ok`/`error`), textos amb `t()`, accions (`retry`) | `fetch`, rutes de l'API, colors |
+| Repository | `apiStatusRepository.ts` | La ruta de l'API, el tipus de `@talaia/shared`, `useQuery` i les seves claus | Textos, estat de pantalla |
+| Tests | `__tests__/` | Repository i ViewModel amb `apiGet` simulat i `createQueryWrapper()` | Crides reals a l'API |
+
+## Afegir una pantalla nova
+
+Per a una feature `xxx` (identificadors en anglès) amb ruta `/ruta-en-catala`:
+
+1. **Tipus.** Si la resposta és un tipus de domini, és (o s'afegeix) a `packages/shared`: `import type { Esdeveniment } from '@talaia/shared'`.
+2. **Repository** `src/features/xxx/xxxRepository.ts`: `fetchXxx()` crida `apiGet<T>('/recurs')` i `useXxxQuery()` l'embolica amb `useQuery` i una clau pròpia (`['recurs', filtres]`). És l'únic fitxer de la feature que coneix l'API.
+3. **ViewModel** `useXxxViewModel.ts`: crida el hook del Repository i retorna el que la View pinta: textos ja traduïts, dades ja formatades, l'estat (`loading`/`ok`/`error`) i les accions.
+4. **View** `XxxScreen.tsx`: `const vm = useXxxViewModel();` i només JSX. Esquelet amb `Screen` (`shared/ui`); colors, mides i espaiats de `core/theme/tokens`.
+5. **Ruta** a `src/app/` (o a `src/app/(tabs)/` si és una pestanya): un fitxer prim que només retorna `<XxxScreen />`. Amb paràmetres, mira `src/app/punt/[id].tsx`.
+6. **Textos**: les claus noves als tres fitxers de `core/i18n/locales/` (ca, es, en). Són tipades: una clau inexistent no compila, i un test comprova que els tres idiomes tenen les mateixes.
+7. **Tests** a `src/features/xxx/__tests__/`: copia els d'`apiStatus`. Només se simula `apiGet` (`jest.mock('@/core/api/httpClient', …)`) i el proveïdor de consultes és `createQueryWrapper()`.
+8. Abans de la PR, des de l'arrel: `npm run lint && npm run typecheck && npm test`.

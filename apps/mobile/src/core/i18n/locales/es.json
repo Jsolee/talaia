@@ -25,6 +25,13 @@
       "en": "Inglés"
     }
   },
+  "apiStatus": {
+    "title": "Estado del servidor",
+    "loading": "Comprobando la conexión…",
+    "ok": "Conectado · API v{{version}}",
+    "error": "No se puede conectar con el servidor",
+    "retry": "Reintentar"
+  },
   "point": {
     "title": "Punto de observación",
     "subtitle": "Ficha del punto {{id}}: índice por horas y factores."

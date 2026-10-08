@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontSizes, radii, spacing } from '@/core/theme/tokens';
+import { ApiStatusCard } from '@/features/apiStatus/ApiStatusCard';
 import { Screen } from '@/shared/ui/Screen';
 
 import { useProfileViewModel } from './useProfileViewModel';
@@ -25,6 +26,7 @@ export function ProfileScreen() {
           </Pressable>
         ))}
       </View>
+      <ApiStatusCard />
     </Screen>
   );
 }
