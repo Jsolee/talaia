@@ -1,3 +1,5 @@
+import type { ApiErrorBody } from '@talaia/shared';
+
 import { env } from '@/core/config/env';
 
 /** Error de l'API de Talaia: el servidor sempre respon `{ error: { code, message } }`. */
@@ -37,7 +39,8 @@ export async function apiGet<T>(path: string, query?: Query, init?: RequestInit)
 
 async function toApiError(response: Response): Promise<ApiError> {
   try {
-    const body = (await response.json()) as { error?: { code?: string; message?: string } };
+    // Un proxy o un error de xarxa poden respondre amb un cos que no és de l'API.
+    const body = (await response.json()) as { error?: Partial<ApiErrorBody['error']> };
     return new ApiError(
       response.status,
       body.error?.code ?? 'unknown',

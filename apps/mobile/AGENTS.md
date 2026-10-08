@@ -29,6 +29,11 @@ Run lint and typecheck before declaring any task done.
 - Import `Link`, `router`, and `useLocalSearchParams` from `expo-router`.
 - Docs: https://docs.expo.dev/router/introduction.md
 
+## Architecture (MVVM)
+
+- Copy the reference module `src/features/apiStatus` (View → ViewModel → Repository → `core/api/httpClient`). Step-by-step guide: «Afegir una pantalla nova» in `README.md`.
+- Domain types come from `@talaia/shared`, always with `import type` (ESLint enforces it).
+
 ## Building with EAS
 
 Use EAS to build, sign, and submit the app in the cloud (`eas build`, `eas submit`) and to ship over-the-air updates (`eas update`) — no local Xcode or Android Studio required. Run EAS CLI as `bunx eas-cli <command>` in Bun projects, or `npx eas-cli@latest <command>` otherwise; substitute that for bare `eas` in docs examples.

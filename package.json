@@ -7,7 +7,8 @@
   },
   "workspaces": [
     "apps/mobile",
-    "services/api"
+    "services/api",
+    "packages/shared"
   ],
   "scripts": {
     "mobile": "npm run start --workspace apps/mobile",

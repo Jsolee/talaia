@@ -1,4 +1,5 @@
 import { OpenAPIRegistry, OpenApiGeneratorV3 } from '@asteasolutions/zod-to-openapi';
+import type { ApiErrorBody } from '@talaia/shared';
 import { z } from 'zod';
 
 /**
@@ -7,7 +8,7 @@ import { z } from 'zod';
  */
 export const registry = new OpenAPIRegistry();
 
-export const ErrorSchema = z
+export const ErrorSchema: z.ZodType<ApiErrorBody> = z
   .object({ error: z.object({ code: z.string(), message: z.string() }) })
   .meta({ id: 'Error' });
 

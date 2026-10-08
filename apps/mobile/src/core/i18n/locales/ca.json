@@ -25,6 +25,13 @@
       "en": "Anglès"
     }
   },
+  "apiStatus": {
+    "title": "Estat del servidor",
+    "loading": "Comprovant la connexió…",
+    "ok": "Connectat · API v{{version}}",
+    "error": "No es pot connectar amb el servidor",
+    "retry": "Torna-ho a provar"
+  },
   "point": {
     "title": "Punt d'observació",
     "subtitle": "Fitxa del punt {{id}}: índex per hores i factors."

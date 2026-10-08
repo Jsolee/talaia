@@ -25,6 +25,13 @@
       "en": "English"
     }
   },
+  "apiStatus": {
+    "title": "Server status",
+    "loading": "Checking the connection…",
+    "ok": "Connected · API v{{version}}",
+    "error": "Can't reach the server",
+    "retry": "Try again"
+  },
   "point": {
     "title": "Observation spot",
     "subtitle": "Spot {{id}}: hourly index and factors."
