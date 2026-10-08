@@ -51,10 +51,15 @@ jobs:
         if: matrix.check == 'typecheck'
         run: npm run typecheck
 
-      - name: Tests amb cobertura
+      - name: Tests de l'app amb cobertura
         id: tests
         if: matrix.check == 'tests'
         run: npm run test --workspace apps/mobile -- --ci --coverage --runInBand
+
+      # S'executa encara que fallin els de l'app; la cobertura per a Sonar continua sent la de l'app.
+      - name: Tests de l'API
+        if: ${{ !cancelled() && matrix.check == 'tests' }}
+        run: npm run test --workspace services/api -- --ci
 
       - name: Desa la cobertura
         if: ${{ !cancelled() && matrix.check == 'tests' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'failure') }}
