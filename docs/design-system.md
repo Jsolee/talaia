@@ -30,6 +30,33 @@ Escala de l'índex de visibilitat: `tap` (0–39) → `jus` (40–69) → `ras` 
 
 Botons (primari `far`, secundari, text), targetes de punt, xips de filtre (fenomen, tipus), indicador de l'índex (xifra + anell/barra amb l'escala de color), full inferior, barra de pestanyes, estats buits i d'error.
 
+## Moviment i fluïdesa
+
+L'app ha de ser molt estètica i anar sempre fluida: és part del producte, no un acabat final. Tota pantalla nova passa aquestes regles abans de la PR.
+
+**Tokens de moviment** (s'implementen a `core/theme/tokens.ts` a TG-113; són valors inicials i s'ajusten al dispositiu):
+
+| Token | Valor | Ús |
+|---|---|---|
+| `motion.fast` | 150 ms | Resposta al tacte, canvis de color o d'estat petits |
+| `motion.base` | 250 ms | Aparèixer i desaparèixer elements, canvi de càrrega a contingut |
+| `motion.slow` | 400 ms | Fulls inferiors, transicions pròpies entre vistes |
+| `motion.spring` | `damping` 18 · `stiffness` 180 | El que l'usuari arrossega o el que «arriba» (full inferior, targetes) |
+
+Corbes: en entrar, desacceleració (`Easing.out(Easing.cubic)`); en sortir, acceleració (`Easing.in(Easing.cubic)`). Mai lineal.
+
+**Regles**
+
+1. **Reanimated** (ja instal·lat) per a tota animació: corre al fil de la interfície. Res d'`Animated` de React Native ni de `setState` a cada fotograma.
+2. S'animen només `transform` i `opacity`. Animar mides o posicions (`width`, `height`, `top`…) obliga a recalcular el disseny i talla.
+3. **Resposta immediata al tacte:** tot element que es pot prémer s'encongeix lleugerament (≈ 0,97) amb `motion.fast`. A les accions clau (desar un pla, activar una alerta, triar un punt al mapa), vibració lleu (`expo-haptics`, s'afegeix a TG-113).
+4. **Càrregues sense salts:** un esquelet amb la forma del contingut, que ocupa el mateix espai, i fosa de `motion.base` quan arriben les dades. No hi ha spinners a pantalla completa ni textos «Carregant…».
+5. **Mai una pantalla buida si ja hi havia dades:** TanStack Query ensenya les de la memòria cau mentre refresca.
+6. Les llistes que poden créixer van virtualitzades (`FlatList`), mai amb un `map` dins d'un `ScrollView`.
+7. Res de càlcul pesat mentre s'anima: les dades arriben preparades del ViewModel (`useMemo`), no es transformen a la View.
+8. Es respecta l'opció del sistema de reduir el moviment (`useReducedMotion` de Reanimated): les animacions es converteixen en fosos curts.
+9. **Objectiu: 60 fps.** Es comprova al dispositiu, amb un *development build*. Expo Go i el mode de desenvolupament van més lents i no serveixen per jutjar-ho.
+
 ## Mapa
 
 Estil nocturn propi sobre les tessel·les vectorials de l'ICGC, recolorit amb aquesta paleta (aigua i terreny en blaus `nit`/`crep`, etiquetes `boira`). Atribució ICGC + OpenStreetMap obligatòria.
