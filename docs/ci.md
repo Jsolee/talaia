@@ -5,7 +5,12 @@ El workflow [ci.yml](../.github/workflows/ci.yml) executa tres checks independen
 commits nous i en fer push a `snapshot`, `stable` o `prod`. També permet execució
 manual des d'Actions quan el workflow és a la branca per defecte.
 
-Node es configura amb `.nvmrc` i les dependències s'instal·len amb `npm ci`.
+Node es configura amb `.nvmrc` i les dependències s'instal·len amb
+`npm ci --ignore-scripts`, sense executar scripts automàtics d'instal·lació.
+Les ordres explícites de lint, typecheck i tests sí que s'executen. Aquesta
+configuració és per a la CI; no canvia la instal·lació local ni els hooks de Git.
+Les accions estan fixades al SHA complet del commit, amb la versió en un comentari.
+Per actualitzar-les, cal verificar el nou commit al repositori oficial i canviar el SHA.
 Els tests actuals són els d'`apps/mobile`; la cobertura es desa durant 7 dies a
 l'artefacte `mobile-coverage`, també si Jest falla i ha generat informes.
 
