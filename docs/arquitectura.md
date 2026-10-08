@@ -48,6 +48,7 @@ Raons clau:
 - **Servidor propi i no només Supabase:** el càlcul horari és pesat i periòdic (Edge Functions tenen límits de temps/memòria), els ràsters GeoTIFF es processen millor en un servidor, l'assignatura demana API pròpia, i la lògica queda fora del proveïdor.
 - **Node i no Python:** Python seria millor per a ràsters, però afegeix un segon llenguatge; el ràster es preprocessa una vegada i el càlcul horari és aritmètica simple.
 - **Precalcular l'índex:** resposta immediata, quotes d'API externes independents del nombre d'usuaris, les alertes necessiten l'índex abans que l'usuari obri l'app, i coherència entre usuaris. Excepció: punt arbitrari del mapa → càlcul al moment + memòria cau.
+- **Punts del mapa en un sol GeoJSON:** `GET /api/v1/punts` retorna tots els punts amb l'índex actual en una `FeatureCollection` amb `ETag`; l'app la descarrega com a molt un cop per hora, la dibuixa amb el clustering de MapLibre i cerca en local. Moure el mapa no consulta la base de dades ([ADR-0012](decisions/0012-punts-mapa-geojson.md)).
 - **Astronomy Engine dins del servidor:** exacte, previsible, sense límits de crides.
 - **ICGC + MapLibre:** cartografia oficial, vectorial, gratuïta, sense clau, CC BY; l'estil JSON es recoloreix amb la paleta de Talaia (mapa nocturn). Fora de Catalunya el mateix servei completa amb OSM (cal atribució).
 - **Supabase a la regió UE:** PostGIS per a consultes geogràfiques amb índexs espacials, Auth sense guardar contrasenyes, Storage amb URL signades per a fotos privades. És Postgres estàndard: migrable.

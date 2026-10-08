@@ -17,5 +17,6 @@ Format: **Context → Decisió → Conseqüències**. Estat: `Acceptada`, `Propo
 | [0009](0009-gitflow.md) | Gitflow amb snapshot (develop) / stable (main) / prod, i Conventional Commits 1.0.0 | Acceptada |
 | [0010](0010-eines-app.md) | npm workspaces, Expo Router, TanStack Query, Jest, Node 22 i eines de qualitat (ESLint, Prettier, commitlint) | Acceptada |
 | [0011](0011-validacio-openapi-zod.md) | Validació amb zod i OpenAPI generat amb zod-to-openapi a l'API | Acceptada |
+| [0012](0012-punts-mapa-geojson.md) | Els punts del mapa se serveixen com un sol GeoJSON en memòria cau (`ETag`), no amb consultes per bbox | Acceptada |
 
 Decisions encara obertes: [pendents.md](pendents.md).
