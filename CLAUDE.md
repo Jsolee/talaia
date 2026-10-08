@@ -21,7 +21,8 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 - Les branques `snapshot`, `stable` i `prod` estan protegides (ruleset de GitHub).
 - **App:** scaffold fet (TG-66): Expo SDK 57 + Expo Router + MVVM + i18n + TanStack Query + Jest a `apps/mobile` (vegeu el seu `README.md` i `AGENTS.md`). Eines: ADR-0010.
 - **Qualitat:** ESLint, Prettier, `tsconfig.base.json` i hooks de commit (husky + lint-staged + commitlint) a l'arrel (TG-67, ADR-0010).
-- Pendent: API (TG-68), commit inicial amb el mòdul MVVM de referència i `packages/shared` (TG-112).
+- **API:** scaffold fet (TG-68): Express 5 a `services/api` amb `/api/v1/health`, errors uniformes, entorn validat i OpenAPI generat amb zod + zod-to-openapi (`/api/v1/openapi.json`, `/api/v1/docs`; ADR-0011). Vegeu `services/api/README.md`.
+- Pendent: commit inicial amb el mòdul MVVM de referència i `packages/shared` (TG-112).
 
 ## Stack (decidit, no reobrir sense ADR)
 
@@ -44,6 +45,7 @@ Per què cada peça i què es va descartar: `docs/arquitectura.md`.
 ```bash
 nvm use && npm install        # a l'arrel (npm workspaces)
 npm run mobile                 # Expo dev server
+npm run api                    # API amb recàrrega (http://localhost:3000/api/v1/docs)
 npm run typecheck && npm test  # tots els workspaces
 npm run lint                   # ESLint a tot el repo
 npm run format                 # Prettier (format:check per comprovar-ho)

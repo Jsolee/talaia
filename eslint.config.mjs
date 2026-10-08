@@ -24,6 +24,8 @@ export default defineConfig([
       // `any` només amb `// eslint-disable-next-line @typescript-eslint/no-explicit-any -- motiu`
       '@typescript-eslint/no-explicit-any': 'error',
       '@eslint-community/eslint-comments/require-description': 'error',
+      // `_next`: Express només reconeix el handler d'errors si té els 4 paràmetres
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
   {
