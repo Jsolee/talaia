@@ -1,3 +1,4 @@
+import type { ApiErrorBody } from '@talaia/shared';
 import type { ErrorRequestHandler, RequestHandler } from 'express';
 import { ZodError, z } from 'zod';
 
@@ -21,7 +22,7 @@ export const notFound: RequestHandler = (req, _res, next) => {
 export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   const { status, code, message } = toApiError(err);
   if (status >= 500) console.error(err);
-  res.status(status).json({ error: { code, message } });
+  res.status(status).json({ error: { code, message } } satisfies ApiErrorBody);
 };
 
 function toApiError(err: unknown): ApiError {
