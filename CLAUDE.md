@@ -22,7 +22,8 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 - **App:** scaffold fet (TG-66): Expo SDK 57 + Expo Router + MVVM + i18n + TanStack Query + Jest a `apps/mobile` (vegeu el seu `README.md` i `AGENTS.md`). Eines: ADR-0010.
 - **Qualitat:** ESLint, Prettier, `tsconfig.base.json` i hooks de commit (husky + lint-staged + commitlint) a l'arrel (TG-67, ADR-0010).
 - **API:** scaffold fet (TG-68): Express 5 a `services/api` amb `/api/v1/health`, errors uniformes, entorn validat i OpenAPI generat amb zod + zod-to-openapi (`/api/v1/openapi.json`, `/api/v1/docs`; ADR-0011). Vegeu `services/api/README.md`.
-- Pendent: commit inicial amb el mòdul MVVM de referència i `packages/shared` (TG-112).
+- **Commit inicial** (TG-112): `packages/shared` amb els tipus de domini, i mòdul MVVM de referència a `apps/mobile/src/features/apiStatus` (guia «Afegir una pantalla nova» a `apps/mobile/README.md`). A `stable` s'hi arriba amb `release/0.1.0` al final del sprint (ADR-0009).
+- **CI** (TG-70): lint, typecheck i tests de l'app i de l'API a cada PR; SonarCloud preparat (`docs/ci.md`).
 
 ## Stack (decidit, no reobrir sense ADR)
 
@@ -67,7 +68,7 @@ data/              Dades estàtiques i scripts de preprocés (GeoTIFF, seeds) �
 docs/              Context, decisions (ADR), sprint, contractes d'API
 ```
 
-Regla: un tipus de domini s'escriu **una sola vegada** a `packages/shared` i el consumeixen l'app, l'admin, l'API i el worker.
+Regla: un tipus de domini s'escriu **una sola vegada** a `packages/shared` i el consumeixen l'app, l'admin, l'API i el worker, sempre amb `import type` (el paquet no té build; vegeu el seu README).
 
 ## Convencions
 
