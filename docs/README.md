@@ -2,6 +2,7 @@
 
 | Document | Per a què |
 |---|---|
+| [onboarding.md](onboarding.md) | **Comença aquí:** entorn local, flux d'una tasca, problemes freqüents |
 | [producte.md](producte.md) | Visió, índex, MVP, NOT list, èpiques, model conceptual, pantalles |
 | [arquitectura.md](arquitectura.md) | Diagrama físic, stack, alternatives descartades, fonts de dades, riscos |
 | [decisions/](decisions/README.md) | ADR acceptades i [decisions pendents](decisions/pendents.md) |
