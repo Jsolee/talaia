@@ -111,5 +111,6 @@ Especificada → implementada → provada (tests a la CI) → revisada (PR aprov
 ## Enllaços
 
 - Repositori: https://github.com/pes2627q1-22-gei-upc/talaia
+- Entorn local i flux d'una tasca per a persones: `docs/onboarding.md`
 - Taiga: https://tree.taiga.io/project/mohamed-dari-pes_22_c_talaia
 - Documentació de l'assignatura i lliurables: Google Drive, carpeta `PES_22_C_TALAIA` (no al repo).

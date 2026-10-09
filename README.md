@@ -4,6 +4,10 @@
 
 Projecte de l'assignatura PES (Projecte d'Enginyeria del Software) · FIB-UPC · 2026-27 Q1 · grup 22 · equip C.
 
+## Comença aquí
+
+Ets nou a l'equip? Segueix la **[guia d'onboarding](docs/onboarding.md)**: en mitja hora tens l'app i l'API funcionant i saps com entregar una tasca.
+
 ## Estructura
 
 | Carpeta | Contingut |
@@ -24,13 +28,27 @@ Projecte de l'assignatura PES (Projecte d'Enginyeria del Software) · FIB-UPC ·
 - [Flux de Git](docs/git-workflow.md) · [Com contribuir](CONTRIBUTING.md)
 - [Design system](docs/design-system.md) · [Serveis entre equips](docs/serveis-externs.md)
 - [Equip](docs/equip.md)
-- Context per a agents: [CLAUDE.md](CLAUDE.md)
+- [Guia d'onboarding](docs/onboarding.md) · Context per a agents: [CLAUDE.md](CLAUDE.md)
 
 ## Posada en marxa
 
-> Els scaffolds de l'app i de l'API arriben amb les tasques TG-66 i TG-68 (fins al 09/10). La guia completa d'entorn local es publica amb TG-72.
+Requisits: Git, Node 22 amb nvm (`.nvmrc`) i Expo Go al mòbil. Pas a pas, per a macOS, Windows i Linux: [docs/onboarding.md](docs/onboarding.md).
 
-Requisits previstos: Node.js 22 LTS (`.nvmrc`), Git, compte d'Expo, accés al projecte Supabase de l'equip.
+```bash
+nvm use && npm install                             # instal·la app, API i shared, i activa els hooks
+npm run lint && npm run typecheck && npm test      # tot ha de passar
+npm run api                                        # API: http://localhost:3000/api/v1/docs
+npm run mobile                                     # app amb Expo (escaneja el QR amb Expo Go)
+```
+
+| Part | On | Estat |
+|---|---|---|
+| App mòbil | `apps/mobile` | Funciona amb Expo Go (MapLibre, a TG-89, demanarà un *development build*) |
+| API | `services/api` | `/api/v1/health` i documentació OpenAPI a `/api/v1/docs` |
+| Tipus compartits | `packages/shared` | Tipus de domini (`import type`) |
+| Base de dades | `supabase/` | Postgres + PostGIS amb migracions del CLI de Supabase (arriba amb TG-69) |
+
+Els secrets van als fitxers `.env` (vegeu `.env.example` i `apps/mobile/.env.example`), mai al repo.
 
 ## Gestió
 

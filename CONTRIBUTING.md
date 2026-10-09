@@ -1,5 +1,9 @@
 # Com contribuir
 
+Primera vegada? Prepara l'entorn amb la **[guia d'onboarding](docs/onboarding.md)**. Hi ha el flux complet d'una tasca amb exemples (secció 6) i els problemes freqüents.
+
+Resum del flux:
+
 1. **Agafa una tasca a Taiga** que tinguis assignada i mou-la a «En curso». Mira'n la *Data d'inici*, la data límit i les hores estimades.
 2. **Crea la branca** des de `snapshot`:
    ```bash
@@ -12,8 +16,9 @@
 
    Refs: TG-88
    ```
-4. **Abans de la PR:** actualitza la branca amb `snapshot` i passa lint, typecheck i tests en local.
-5. **Obre la PR cap a `snapshot`** amb la plantilla i un títol en format Conventional Commits; assigna un revisor. Cap PR s'aprova a si mateixa.
+   Els hooks (s'activen amb `npm install`) rebutgen el commit si el missatge no compleix el format o si ESLint troba errors.
+4. **Abans de la PR:** actualitza la branca amb `snapshot` i passa `npm run lint && npm run typecheck && npm test`.
+5. **Obre la PR cap a `snapshot`** amb la plantilla i un títol en format Conventional Commits. Revisor: backend (API, worker, base de dades), Mohamed; la resta, qualsevol company amb permís d'escriptura. Cap PR s'aprova a si mateixa, i no es fusiona sense la CI en verd.
 6. **En fusionar** (merge commit): tanca la tasca a Taiga i omple **Hores reals**.
 
 Releases i hotfixos (Gitflow) els fa el sprint master: [docs/git-workflow.md](docs/git-workflow.md).
