@@ -6,11 +6,10 @@ Llegenda: **Recomanació** = la proposta inicial del sprint master; no és defin
 
 ## Tècniques (Sprint 1, scaffolds)
 
-P1, P2, P3, P7 i P8 ja estan decidides: [ADR-0010](0010-eines-app.md). P4: [ADR-0011](0011-validacio-openapi-zod.md).
+P1, P2, P3, P7 i P8 ja estan decidides: [ADR-0010](0010-eines-app.md). P4: [ADR-0011](0011-validacio-openapi-zod.md). P5: [ADR-0013](0013-acces-bd-kysely.md).
 
 | # | Decisió | Opcions | Recomanació | Quan / qui |
 |---|---|---|---|---|
-| P5 | Accés a la base de dades des de l'API/worker | supabase-js · Kysely · Drizzle · `pg` directe | **Migracions SQL amb Supabase CLI + Kysely** amb tipus generats; PostGIS amb SQL explícit | TG-69 / TG-86 |
 | P6 | Validació del JWT a l'API | Verificar amb JWKS de Supabase (`jose`) · secret compartit | **JWKS amb `jose`** | TG-84, Martina |
 | P9 | Planificació del worker | `node-cron` dins el contenidor · cron del sistema | **node-cron** (tot dins de Docker) | TG-99, Martina |
 | P10 | Preprocés del GeoTIFF | `geotiff.js` (Node) · GDAL (script a part) | **geotiff.js** en un script de `data/` que genera la foscor per punt | TG-97, Hugo |

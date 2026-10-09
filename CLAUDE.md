@@ -35,6 +35,7 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 | API | **Node.js + TypeScript + Express**, REST a `/api/v1`, documentada amb **OpenAPI** |
 | Worker | Procés Node.js que recalcula l'índex **cada hora** (índex precalculat, no a cada petició) |
 | Dades | **Supabase**: PostgreSQL + **PostGIS**, Auth (Google, Apple, correu → JWT), Storage |
+| Accés a dades | Migracions SQL del CLI de Supabase + **Kysely** a `packages/db` (tipus amb `kysely-codegen`, RLS sense polítiques; ADR-0013) |
 | Infra | VM Ubuntu amb **Docker Compose** (API + worker + Nginx), HTTPS amb Let's Encrypt |
 | CI | GitHub Actions: lint + typecheck + tests a cada PR, anàlisi de qualitat (SonarCloud) |
 | i18n | i18next (ca per defecte, es, en) |
