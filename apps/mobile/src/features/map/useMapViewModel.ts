@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { nightStyle } from './style/nightStyle';
 
 /** Vista inicial: tot Catalunya, amb la càmera inclinada perquè es llegeixi el relleu. */
-export const initialViewState = { center: [1.75, 41.7] as [number, number], zoom: 7, pitch: 50 };
+export const initialViewState = { center: [1.8, 41.75] as [number, number], zoom: 7.3, pitch: 40 };
 
 /**
  * Límits de la càmera. Les tessel·les de l'ICGC pesen molt a zoom baix (1,4 MB a z9),

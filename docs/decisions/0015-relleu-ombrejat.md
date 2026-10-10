@@ -8,7 +8,7 @@ HU06 demana «la cartografia de l'ICGC amb relleu 3D». MapLibre GL JS (web) té
 
 ## Decisió
 
-- El mapa fa servir **relleu ombrejat** amb el model d'elevacions de l'ICGC (`terreny-5m-30m-rgb-extent`: 5 m a Catalunya i 30 m al voltant, codificació terrain-rgb) i una **càmera inclinada** (50°). A zoom alt, els edificis es pinten en 3D.
+- El mapa fa servir **relleu ombrejat** amb el model d'elevacions de l'ICGC (`terreny-5m-30m-rgb-extent`: 5 m a Catalunya i 30 m al voltant, codificació terrain-rgb) i una **càmera inclinada** (40°). A zoom alt, els edificis es pinten en 3D.
 - Quan MapLibre Native publiqui el terreny, s'activa amb la mateixa font d'elevacions (`terrain` a l'estil, `apps/mobile/src/features/map/style/nightStyle.ts`).
 - Descartat: **MapLibre GL JS dins un WebView** per tenir el 3D real ara. El mapa és la pantalla principal i hauria d'anar a 60 fps, amb els gestos i els marcadors de TG-90; un WebView hi afegeix un pont i un risc de rendiment que no compensen.
 - El criteri d'HU06 s'entén com «relleu visible (ombrejat i càmera inclinada)» fins que hi hagi terreny natiu. Es comunica a l'equip i al Product Owner a la review.
