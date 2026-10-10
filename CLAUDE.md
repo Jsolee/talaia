@@ -24,6 +24,7 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 - **API:** scaffold fet (TG-68): Express 5 a `services/api` amb `/api/v1/health`, errors uniformes, entorn validat i OpenAPI generat amb zod + zod-to-openapi (`/api/v1/openapi.json`, `/api/v1/docs`; ADR-0011). Vegeu `services/api/README.md`.
 - **Commit inicial** (TG-112): `packages/shared` amb els tipus de domini, i mòdul MVVM de referència a `apps/mobile/src/features/apiStatus` (guia «Afegir una pantalla nova» a `apps/mobile/README.md`). A `stable` s'hi arriba amb `release/0.1.0` al final del sprint (ADR-0009).
 - **CI** (TG-70): lint, typecheck i tests de l'app i de l'API a cada PR; SonarCloud preparat (`docs/ci.md`).
+- **Mapa** (TG-89): MapLibre amb l'estil nocturn de l'ICGC i relleu ombrejat (ADR-0015). **Expo Go ja no serveix:** cal un *development build* (ADR-0014, `docs/onboarding.md`). Identificador: `cat.talaia.app`.
 
 ## Stack (decidit, no reobrir sense ADR)
 
