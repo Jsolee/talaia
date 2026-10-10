@@ -112,18 +112,20 @@ Ha de dir `Talaia API a http://localhost:3000/api/v1`. Si surt `../../.env not f
 
 Es recarrega sola quan deses un fitxer. Detalls: [`services/api/README.md`](../services/api/README.md).
 
-### El development build (un cop per persona)
+### Expo Go i el development build
 
-Des del mapa (TG-89) l'app porta codi natiu (MapLibre) i **Expo Go ja no l'obre**. Cadascú instal·la una vegada el *development build*: l'app Talaia amb el codi natiu, que després carrega el JavaScript de Metro com feia Expo Go ([ADR-0014](decisions/0014-development-build-identificador.md)). Només s'ha de refer quan una PR canvia dependències natives o `app.json` (ho dirà la PR).
+**Per provar al mòbil, Expo Go** (`npm run mobile`): funciona a qualsevol mòbil i no cal Mac. Tota l'app hi funciona **menys el mapa**: MapLibre és codi natiu que Expo Go no porta, i la pestanya Mapa ho avisa en lloc de petar.
+
+**Per veure el mapa, el *development build***: l'app Talaia amb el codi natiu, que carrega el JavaScript de Metro com Expo Go ([ADR-0014](decisions/0014-development-build-identificador.md)). S'instal·la un cop i s'obre amb `npm run mobile:dev`. Només s'ha de refer quan una PR canvia dependències natives o `app.json` (ho dirà la PR).
 
 | Tens… | Com | Temps |
 |---|---|---|
+| Un Android (sense Mac) | `cd apps/mobile && npx eas-cli@latest build --profile development --platform android` i instal·la l'APK des de l'enllaç que surt | ~15 min, al núvol |
 | Mac amb **Xcode 26.4 o més nou** (ho demana l'SDK 57) | `cd apps/mobile && npx expo run:ios` (simulador) | ~10 min el primer cop |
+| Mac amb un Xcode més antic | `cd apps/mobile && npx eas-cli@latest build --profile development-simulator --platform ios` i arrossega l'`.app` al simulador | ~15 min, al núvol |
 | Android Studio | `cd apps/mobile && npx expo run:android` (emulador o mòbil amb cable) | ~10 min |
-| Res d'això, i un Android | `cd apps/mobile && npx eas-cli@latest build --profile development --platform android` i instal·la l'APK des de l'enllaç que surt | ~15 min, al núvol |
-| Mac amb un Xcode més antic, o sense compilar en local | `npx eas-cli@latest build --profile development-simulator --platform ios` i arrossega l'`.app` al simulador | ~15 min, al núvol |
 
-Per a EAS has de ser membre de l'organització d'Expo **`talaia.pes`** i haver fet `npx eas-cli@latest login`. Un iPhone físic necessita el compte d'Apple de pagament (P15): de moment, simulador.
+Per a EAS has de ser membre de l'organització d'Expo **`talaia.pes`** i haver fet `npx eas-cli@latest login`. A un **iPhone físic** el mapa necessita el compte d'Apple de pagament (P15): mentrestant, el mapa es prova al simulador o en un Android, i la resta de l'app a l'iPhone amb Expo Go.
 
 ### L'app
 
@@ -135,7 +137,7 @@ S'obre Metro amb un codi QR. Tria on la vols veure:
 
 | On | Com | Adreça de l'API (`EXPO_PUBLIC_API_URL` a `apps/mobile/.env`) |
 |---|---|---|
-| **El teu mòbil** amb el development build | Obre l'app Talaia i escaneja el QR des d'allà. Mòbil i ordinador a la **mateixa wifi** | `http://<IP del teu ordinador>:3000/api/v1`. La IP: macOS `ipconfig getifaddr en0` · Windows `ipconfig` · Linux `hostname -I` |
+| **El teu mòbil** amb Expo Go | Escaneja el QR (Android: des d'Expo Go; iPhone: amb la càmera). Amb el development build: `npm run mobile:dev` i escaneja'l des de l'app Talaia. Mòbil i ordinador a la **mateixa wifi** | `http://<IP del teu ordinador>:3000/api/v1`. La IP: macOS `ipconfig getifaddr en0` · Windows `ipconfig` · Linux `hostname -I` |
 | Simulador d'iOS (Mac) | Prem `i` | No cal: el valor per defecte (`localhost`) funciona |
 | Emulador d'Android | Obre l'emulador i prem `a` | `http://10.0.2.2:3000/api/v1` (és com l'emulador veu el teu ordinador) |
 

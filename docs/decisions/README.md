@@ -19,7 +19,7 @@ Format: **Context → Decisió → Conseqüències**. Estat: `Acceptada`, `Propo
 | [0011](0011-validacio-openapi-zod.md) | Validació amb zod i OpenAPI generat amb zod-to-openapi a l'API | Acceptada |
 | [0012](0012-punts-mapa-geojson.md) | Els punts del mapa se serveixen com un sol GeoJSON en memòria cau (`ETag`), no amb consultes per bbox | Acceptada |
 | [0013](0013-acces-bd-kysely.md) | Accés a la base de dades amb Kysely (`@talaia/db`) sobre migracions SQL de Supabase; RLS activat sense polítiques | Acceptada |
-| [0014](0014-development-build-identificador.md) | Development build (`expo-dev-client` + perfils d'EAS) i identificador `cat.talaia.app` | Acceptada |
+| [0014](0014-development-build-identificador.md) | Expo Go per provar; development build (`expo-dev-client` + EAS) per al mapa; identificador `cat.talaia.app` | Acceptada |
 | [0015](0015-relleu-ombrejat.md) | Relleu ombrejat i càmera inclinada fins que MapLibre Native tingui terreny 3D | Acceptada |
 
 Decisions encara obertes: [pendents.md](pendents.md).
