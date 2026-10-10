@@ -188,7 +188,7 @@ Mostra cada migració amb la columna *Local* i *Remote* iguals.
 
 Una migració aplicada **no es modifica mai**: si t'has equivocat, en fas una de nova que ho corregeixi.
 
-Com hi accedeix el codi de l'API i del worker encara està per decidir (P5, a [`decisions/pendents.md`](decisions/pendents.md)).
+El codi de l'API i del worker hi accedeix amb Kysely des del paquet `@talaia/db`, i els tipus es generen de la base de dades local (`npx supabase start`, cal Docker). Detalls i ordres: [ADR-0013](decisions/0013-acces-bd-kysely.md).
 
 ---
 
@@ -374,7 +374,7 @@ En directe, seccions 2 a 4 d'aquesta guia. Tothom acaba veient **«Connectat»**
 
 | # | Decisió | Bloqueja | Proposta |
 |---|---|---|---|
-| **P5** | Com accedeixen l'API i el worker a la base de dades | Model de punts (TG-86), endpoints (TG-88, TG-92, TG-100, TG-108), worker (TG-99) | **Migracions amb Supabase CLI** (ja és el que fa TG-69) **+ Kysely** per a les consultes, amb tipus generats; PostGIS amb SQL explícit. Decidir avui i escriure l'ADR |
+| **P5** | Com accedeixen l'API i el worker a la base de dades | Model de punts (TG-86), endpoints (TG-88, TG-92, TG-100, TG-108), worker (TG-99) | **Migracions amb Supabase CLI** (ja és el que fa TG-69) **+ Kysely** per a les consultes, amb tipus generats; PostGIS amb SQL explícit. **Decidida:** [ADR-0013](decisions/0013-acces-bd-kysely.md) |
 | **P13** | Catàleg inicial de ≥ 30 punts i les seves metadades | Seed (TG-87), mapa i recomanacions | Mohamed porta una proposta de llista i camps |
 | **P14** | Valors de `tipus` de fenomen | Esdeveniments (TG-106/108), calendari, contracte amb Aprop (TG-109) | Victor ho tanca amb Aprop |
 
