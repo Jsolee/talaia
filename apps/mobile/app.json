@@ -35,8 +35,7 @@
           "imageWidth": 76
         }
       ],
-      "expo-localization",
-      "@maplibre/maplibre-react-native"
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true,

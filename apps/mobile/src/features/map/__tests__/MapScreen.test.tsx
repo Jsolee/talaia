@@ -1,30 +1,34 @@
 import { render, screen } from '@testing-library/react-native';
+import { View } from 'react-native';
 
 import i18n from '@/core/i18n';
 
 import { MapScreen } from '../MapScreen';
+import { nightStyle } from '../style/nightStyle';
+import { camera } from '../useMapViewModel';
 
-let mockHasNativeMap = true;
-jest.mock('../mapAvailability', () => ({ hasNativeMap: () => mockHasNativeMap }));
+// La DOM component corre en un WebView: aquí només es comprova què li passa la pantalla.
+const mockNightMap = jest.fn((_props: unknown) => <View testID="night-map" />);
+jest.mock('../NightMap', () => ({
+  __esModule: true,
+  default: (props: unknown) => mockNightMap(props),
+}));
 
 describe('MapScreen', () => {
   beforeEach(async () => {
     await i18n.changeLanguage('ca');
+    mockNightMap.mockClear();
   });
 
-  it('pinta el mapa amb la seva etiqueta accessible', async () => {
-    mockHasNativeMap = true;
+  it("passa l'estil nocturn, la càmera i l'etiqueta accessible al mapa", async () => {
     await render(<MapScreen />);
-    expect(screen.getByTestId('maplibre-map')).toHaveProp(
-      'accessibilityLabel',
-      'Mapa nocturn de Catalunya amb el relleu',
+    expect(screen.getByTestId('night-map')).toBeOnTheScreen();
+    expect(mockNightMap).toHaveBeenCalledWith(
+      expect.objectContaining({
+        mapStyle: nightStyle,
+        camera,
+        accessibilityLabel: 'Mapa nocturn de Catalunya amb el relleu',
+      }),
     );
-  });
-
-  it('a Expo Go, sense el codi natiu, avisa en lloc de petar', async () => {
-    mockHasNativeMap = false;
-    await render(<MapScreen />);
-    expect(screen.getByText('El mapa necessita el development build')).toBeOnTheScreen();
-    expect(screen.queryByTestId('maplibre-map')).toBeNull();
   });
 });

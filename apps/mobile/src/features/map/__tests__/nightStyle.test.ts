@@ -1,8 +1,8 @@
-import type { LayerSpecification } from '@maplibre/maplibre-react-native';
+import type { LayerSpecification } from 'maplibre-gl';
 
 import { colors } from '@/core/theme/tokens';
 
-import { ATTRIBUTION, nightStyle, RELIEF_SOURCE_ID } from '../style/nightStyle';
+import { ATTRIBUTION, nightStyle, RELIEF_SOURCE_ID, TERRAIN_SOURCE_ID } from '../style/nightStyle';
 
 const layers = nightStyle.layers;
 const paint = (layer: LayerSpecification) => (layer.paint ?? {}) as Record<string, unknown>;
@@ -19,6 +19,7 @@ describe("estil nocturn sobre l'ICGC", () => {
   it('no deixa capes amagades ni fonts que cap capa fa servir', () => {
     expect(layers.filter((layer) => layout(layer).visibility === 'none')).toEqual([]);
     const used = new Set(layers.flatMap((layer) => ('source' in layer ? [layer.source] : [])));
+    used.add(TERRAIN_SOURCE_ID);
     expect(new Set(Object.keys(nightStyle.sources))).toEqual(used);
     expect(nightStyle.sources).not.toHaveProperty('contextmapsadmpt');
   });
@@ -44,6 +45,13 @@ describe("estil nocturn sobre l'ICGC", () => {
     });
     expect(relief).toBeGreaterThan(-1);
     expect(relief).toBeLessThan(firstRoad);
+  });
+
+  it('té terreny 3D amb una font pròpia i un cel de nit', () => {
+    expect(nightStyle.terrain?.source).toBe(TERRAIN_SOURCE_ID);
+    expect(TERRAIN_SOURCE_ID).not.toBe(RELIEF_SOURCE_ID);
+    expect(nightStyle.sources[TERRAIN_SOURCE_ID]).toMatchObject({ type: 'raster-dem' });
+    expect(nightStyle.sky?.['sky-color']).toBe(colors.nit);
   });
 
   it("cita l'ICGC i OpenStreetMap a totes les fonts", () => {

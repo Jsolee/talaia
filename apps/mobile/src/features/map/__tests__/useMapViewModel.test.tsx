@@ -12,17 +12,17 @@ describe('useMapViewModel', () => {
 
   it("dona l'estil nocturn i una càmera dins dels límits de Catalunya", async () => {
     const { result } = await renderHook(() => useMapViewModel());
-    const { initialViewState, minZoom, maxZoom, maxBounds } = result.current;
+    const { center, zoom, minZoom, maxZoom, maxBounds } = result.current.camera;
     const [west, south, east, north] = maxBounds;
-    const [lng, lat] = initialViewState.center;
+    const [lng, lat] = center;
 
     expect(result.current.mapStyle).toBe(nightStyle);
     expect(lng).toBeGreaterThan(west);
     expect(lng).toBeLessThan(east);
     expect(lat).toBeGreaterThan(south);
     expect(lat).toBeLessThan(north);
-    expect(initialViewState.zoom).toBeGreaterThanOrEqual(minZoom);
-    expect(initialViewState.zoom).toBeLessThanOrEqual(maxZoom);
+    expect(zoom).toBeGreaterThanOrEqual(minZoom);
+    expect(zoom).toBeLessThanOrEqual(maxZoom);
     expect(result.current.accessibilityLabel).toBe('Mapa nocturn de Catalunya amb el relleu');
   });
 });

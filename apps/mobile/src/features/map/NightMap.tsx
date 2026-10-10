@@ -1,33 +1,77 @@
-import { Camera, Map } from '@maplibre/maplibre-react-native';
-import { StyleSheet } from 'react-native';
+'use dom';
 
-import { colors } from '@/core/theme/tokens';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
-import type { useMapViewModel } from './useMapViewModel';
+import type { DOMProps } from 'expo/dom';
+import maplibregl, { type StyleSpecification } from 'maplibre-gl';
+import { useEffect, useRef } from 'react';
 
-type NightMapProps = { vm: ReturnType<typeof useMapViewModel> };
+export type MapCamera = {
+  center: [number, number];
+  zoom: number;
+  pitch: number;
+  minZoom: number;
+  maxZoom: number;
+  maxBounds: [number, number, number, number];
+};
 
-/** El mapa natiu. Només el carrega `MapScreen` quan hi ha el codi natiu de MapLibre. */
-export function NightMap({ vm }: NightMapProps) {
+/** Colors dels controls de MapLibre: dins del WebView no hi ha tokens, arriben com a props. */
+export type MapChrome = { background: string; text: string; link: string };
+
+type NightMapProps = {
+  mapStyle: StyleSpecification;
+  camera: MapCamera;
+  chrome: MapChrome;
+  accessibilityLabel: string;
+  dom?: DOMProps;
+};
+
+/**
+ * Mapa nocturn amb MapLibre GL JS. És una DOM component: corre dins d'un WebView, i per això funciona
+ * a Expo Go i té terreny 3D real (ADR-0015). Les props arriben serialitzades pel pont asíncron.
+ */
+export default function NightMap({ mapStyle, camera, chrome, accessibilityLabel }: NightMapProps) {
+  const container = useRef<HTMLDivElement>(null);
+  // El pont torna a enviar les props a cada render natiu: el mapa es crea un sol cop amb les inicials.
+  const initial = useRef({ mapStyle, camera });
+
+  useEffect(() => {
+    if (!container.current) return;
+    const { mapStyle: style, camera: view } = initial.current;
+    const map = new maplibregl.Map({
+      container: container.current,
+      style,
+      center: view.center,
+      zoom: view.zoom,
+      pitch: view.pitch,
+      minZoom: view.minZoom,
+      maxZoom: view.maxZoom,
+      maxBounds: view.maxBounds,
+      maxPitch: 75,
+      attributionControl: { compact: true },
+    });
+    // L'atribució compacta arrenca desplegada: es plega i queda al botó (i).
+    map.once('load', () =>
+      container.current
+        ?.querySelector('.maplibregl-ctrl-attrib')
+        ?.classList.remove('maplibregl-compact-show'),
+    );
+    return () => map.remove();
+  }, []);
+
   return (
-    <Map
-      style={styles.map}
-      mapStyle={vm.mapStyle}
-      accessibilityLabel={vm.accessibilityLabel}
-      attribution
-      logo={false}
-      tintColor={colors.boira}
-    >
-      <Camera
-        initialViewState={vm.initialViewState}
-        minZoom={vm.minZoom}
-        maxZoom={vm.maxZoom}
-        maxBounds={vm.maxBounds}
+    <>
+      <style>{`
+        .maplibregl-ctrl-attrib { background-color: ${chrome.background} !important; color: ${chrome.text}; }
+        .maplibregl-ctrl-attrib a { color: ${chrome.link}; }
+        .maplibregl-ctrl-attrib-button { background-color: transparent !important; filter: invert(1); }
+      `}</style>
+      <div
+        ref={container}
+        role="region"
+        aria-label={accessibilityLabel}
+        style={{ position: 'fixed', inset: 0, background: chrome.background }}
       />
-    </Map>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  map: { flex: 1, backgroundColor: colors.nit },
-});

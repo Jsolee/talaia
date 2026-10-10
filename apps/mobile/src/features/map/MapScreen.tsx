@@ -1,16 +1,28 @@
-import { Screen } from '@/shared/ui/Screen';
+import { colors } from '@/core/theme/tokens';
 
-import type { NightMap as NightMapView } from './NightMap';
+import NightMap from './NightMap';
 import { useMapViewModel } from './useMapViewModel';
 
-/** Pantalla del mapa (HU06): cartografia nocturna de l'ICGC amb relleu. Els punts arriben amb TG-90. */
+const chrome = { background: colors.nit, text: colors.boira, link: colors.lluna };
+
+/** Pantalla del mapa (HU06): cartografia nocturna de l'ICGC amb relleu 3D. Els punts arriben amb TG-90. */
 export function MapScreen() {
   const vm = useMapViewModel();
-  if (!vm.isMapAvailable) {
-    return <Screen title={vm.unavailableTitle} subtitle={vm.unavailableMessage} />;
-  }
-  // A Expo Go no es pot ni importar MapLibre: el mapa només es carrega si hi ha el codi natiu.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports -- import condicional del mòdul natiu
-  const { NightMap } = require('./NightMap') as { NightMap: typeof NightMapView };
-  return <NightMap vm={vm} />;
+  return (
+    <NightMap
+      mapStyle={vm.mapStyle}
+      camera={vm.camera}
+      chrome={chrome}
+      accessibilityLabel={vm.accessibilityLabel}
+      dom={{
+        style: { flex: 1, backgroundColor: colors.nit },
+        scrollEnabled: false,
+        bounces: false,
+        overScrollMode: 'never',
+        // De vora a vora. ponytail: l'Expo Go actual ho ignora i deixa una franja `nit` a dalt i a baix.
+        contentInsetAdjustmentBehavior: 'never',
+        automaticallyAdjustContentInsets: false,
+      }}
+    />
+  );
 }

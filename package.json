@@ -12,7 +12,6 @@
   ],
   "scripts": {
     "mobile": "npm run start --workspace apps/mobile",
-    "mobile:dev": "npm run start:dev --workspace apps/mobile",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "lint": "eslint .",
@@ -40,5 +39,9 @@
       "prettier --write"
     ],
     "*.{json,yml,yaml,css}": "prettier --write"
+  },
+  "overrides": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   }
 }

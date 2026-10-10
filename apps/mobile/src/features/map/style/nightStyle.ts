@@ -1,8 +1,4 @@
-import type {
-  LayerSpecification,
-  SourceSpecification,
-  StyleSpecification,
-} from '@maplibre/maplibre-react-native';
+import type { LayerSpecification, SourceSpecification, StyleSpecification } from 'maplibre-gl';
 
 import { colors } from '@/core/theme/tokens';
 
@@ -19,6 +15,7 @@ export const ATTRIBUTION =
   '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a> · © OpenMapTiles';
 
 export const RELIEF_SOURCE_ID = 'relleu';
+export const TERRAIN_SOURCE_ID = 'relleu-3d';
 
 // Model d'elevacions de l'ICGC: 5 m a Catalunya i 30 m al voltant. El de 5 m sol talla en sec a la frontera.
 // Fora dels límits el servidor respon 200 amb un cos que no és PNG: cal fixar bounds i zooms.
@@ -35,8 +32,8 @@ const reliefSource: SourceSpecification = {
   attribution: ATTRIBUTION,
 };
 
-// ponytail: ombrejat 2D. MapLibre Native encara no té `terrain` (maplibre-native#4190); quan el tingui,
-// `terrain: { source: RELIEF_SOURCE_ID }` amb una segona font raster-dem igual. Vegeu ADR-0015.
+// Ombrejat sobre el terreny 3D: marca les carenes de nit. MapLibre desaconsella que l'ombrejat i el
+// terreny comparteixin font, per això n'hi ha dues d'iguals (ADR-0015).
 const reliefLayer: LayerSpecification = {
   id: 'talaia-relleu',
   type: 'hillshade',
@@ -125,6 +122,7 @@ export function buildNightStyle(base: StyleSpecification): StyleSpecification {
     if (used.has(id)) sources[id] = { ...source, attribution: ATTRIBUTION } as SourceSpecification;
   }
   sources[RELIEF_SOURCE_ID] = reliefSource;
+  sources[TERRAIN_SOURCE_ID] = reliefSource;
 
   return {
     version: 8,
@@ -133,8 +131,19 @@ export function buildNightStyle(base: StyleSpecification): StyleSpecification {
     glyphs: base.glyphs,
     sources,
     layers,
+    terrain: { source: TERRAIN_SOURCE_ID, exaggeration: 1.2 },
+    // Cel de nit: a l'horitzó, la boira es fon amb el terra i amaga on s'acaben les elevacions.
+    sky: {
+      'sky-color': colors.nit,
+      'horizon-color': colors.crep,
+      'fog-color': colors.card,
+      'sky-horizon-blend': 0.6,
+      'horizon-fog-blend': 0.6,
+      'fog-ground-blend': 0.4,
+      'atmosphere-blend': 0,
+    },
   };
 }
 
-/** Estil a punt per a `<Map mapStyle>`. Constant de mòdul: MapLibre el torna a serialitzar si canvia. */
+/** Estil a punt per al mapa. Constant de mòdul: es passa una vegada a la DOM component. */
 export const nightStyle = buildNightStyle(icgcDark as unknown as StyleSpecification);
