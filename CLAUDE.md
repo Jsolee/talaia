@@ -24,14 +24,14 @@ Més context: `docs/producte.md` (abast, MVP, NOT list), `docs/arquitectura.md`,
 - **API:** scaffold fet (TG-68): Express 5 a `services/api` amb `/api/v1/health`, errors uniformes, entorn validat i OpenAPI generat amb zod + zod-to-openapi (`/api/v1/openapi.json`, `/api/v1/docs`; ADR-0011). Vegeu `services/api/README.md`.
 - **Commit inicial** (TG-112): `packages/shared` amb els tipus de domini, i mòdul MVVM de referència a `apps/mobile/src/features/apiStatus` (guia «Afegir una pantalla nova» a `apps/mobile/README.md`). A `stable` s'hi arriba amb `release/0.1.0` al final del sprint (ADR-0009).
 - **CI** (TG-70): lint, typecheck i tests de l'app i de l'API a cada PR; SonarCloud preparat (`docs/ci.md`).
-- **Mapa** (TG-89): MapLibre amb l'estil nocturn de l'ICGC i relleu ombrejat (ADR-0015). Al mòbil es prova amb **Expo Go** (tot menys el mapa, que avisa); el mapa necessita el *development build* (`npm run mobile:dev`, ADR-0014). Un mòdul natiu nou ha de comprovar-se i degradar igual. Identificador: `cat.talaia.app`.
+- **Mapa** (TG-89): MapLibre GL JS en una DOM component d'Expo, amb l'estil nocturn de l'ICGC, terreny 3D i cel de nit (ADR-0015). Tota l'app es prova a **Expo Go**; cap mòdul natiu que Expo Go no porti sense ADR (ADR-0014). Identificador: `cat.talaia.app`.
 
 ## Stack (decidit, no reobrir sense ADR)
 
 | Capa | Tecnologia |
 |---|---|
 | App mòbil | React Native + TypeScript amb **Expo** (EAS Build, Expo Push), arquitectura **MVVM** |
-| Mapa | **MapLibre** + tessel·les vectorials i relleu 3D de l'**ICGC** (estil nocturn propi) |
+| Mapa | **MapLibre GL JS** en una DOM component d'Expo + tessel·les vectorials i relleu 3D de l'**ICGC** (estil nocturn propi; ADR-0015) |
 | Web d'administració | React + TypeScript (estàtica, servida per Nginx) |
 | API | **Node.js + TypeScript + Express**, REST a `/api/v1`, documentada amb **OpenAPI** |
 | Worker | Procés Node.js que recalcula l'índex **cada hora** (índex precalculat, no a cada petició) |
@@ -47,8 +47,7 @@ Per què cada peça i què es va descartar: `docs/arquitectura.md`.
 
 ```bash
 nvm use && npm install        # a l'arrel (npm workspaces)
-npm run mobile                 # Expo Go (tota l'app menys el mapa)
-npm run mobile:dev             # development build (amb el mapa; ADR-0014)
+npm run mobile                 # Expo Go (tota l'app, mapa inclòs)
 npm run api                    # API amb recàrrega (http://localhost:3000/api/v1/docs)
 npm run typecheck && npm test  # tots els workspaces
 npm run lint                   # ESLint a tot el repo
