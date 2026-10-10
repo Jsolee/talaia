@@ -1,6 +1,7 @@
 import type { LngLatBounds } from '@maplibre/maplibre-react-native';
 import { useTranslation } from 'react-i18next';
 
+import { hasNativeMap } from './mapAvailability';
 import { nightStyle } from './style/nightStyle';
 
 /** Vista inicial: tot Catalunya, amb la càmera inclinada perquè es llegeixi el relleu. */
@@ -19,9 +20,12 @@ export const cameraLimits = {
 export function useMapViewModel() {
   const { t } = useTranslation();
   return {
+    isMapAvailable: hasNativeMap(),
     mapStyle: nightStyle,
     initialViewState,
     ...cameraLimits,
     accessibilityLabel: t('map.a11y'),
+    unavailableTitle: t('map.unavailable.title'),
+    unavailableMessage: t('map.unavailable.message'),
   };
 }

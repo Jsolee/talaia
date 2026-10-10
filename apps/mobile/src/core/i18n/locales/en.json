@@ -9,7 +9,11 @@
     "profile": "Profile"
   },
   "map": {
-    "a11y": "Night map of Catalonia with its terrain"
+    "a11y": "Night map of Catalonia with its terrain",
+    "unavailable": {
+      "title": "The map needs the development build",
+      "message": "Expo Go doesn't include MapLibre. The rest of the app works here; to see the map, install the development build (docs/onboarding.md)."
+    }
   },
   "calendar": {
     "title": "Calendar",

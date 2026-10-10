@@ -9,7 +9,11 @@
     "profile": "Perfil"
   },
   "map": {
-    "a11y": "Mapa nocturn de Catalunya amb el relleu"
+    "a11y": "Mapa nocturn de Catalunya amb el relleu",
+    "unavailable": {
+      "title": "El mapa necessita el development build",
+      "message": "Expo Go no porta MapLibre. La resta de l'app funciona aquí; per veure el mapa, instal·la el development build (docs/onboarding.md)."
+    }
   },
   "calendar": {
     "title": "Calendari",

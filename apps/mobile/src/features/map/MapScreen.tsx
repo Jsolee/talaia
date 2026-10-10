@@ -1,32 +1,16 @@
-import { Camera, Map } from '@maplibre/maplibre-react-native';
-import { StyleSheet } from 'react-native';
+import { Screen } from '@/shared/ui/Screen';
 
-import { colors } from '@/core/theme/tokens';
-
+import type { NightMap as NightMapView } from './NightMap';
 import { useMapViewModel } from './useMapViewModel';
 
 /** Pantalla del mapa (HU06): cartografia nocturna de l'ICGC amb relleu. Els punts arriben amb TG-90. */
 export function MapScreen() {
   const vm = useMapViewModel();
-  return (
-    <Map
-      style={styles.map}
-      mapStyle={vm.mapStyle}
-      accessibilityLabel={vm.accessibilityLabel}
-      attribution
-      logo={false}
-      tintColor={colors.boira}
-    >
-      <Camera
-        initialViewState={vm.initialViewState}
-        minZoom={vm.minZoom}
-        maxZoom={vm.maxZoom}
-        maxBounds={vm.maxBounds}
-      />
-    </Map>
-  );
+  if (!vm.isMapAvailable) {
+    return <Screen title={vm.unavailableTitle} subtitle={vm.unavailableMessage} />;
+  }
+  // A Expo Go no es pot ni importar MapLibre: el mapa només es carrega si hi ha el codi natiu.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- import condicional del mòdul natiu
+  const { NightMap } = require('./NightMap') as { NightMap: typeof NightMapView };
+  return <NightMap vm={vm} />;
 }
-
-const styles = StyleSheet.create({
-  map: { flex: 1, backgroundColor: colors.nit },
-});
